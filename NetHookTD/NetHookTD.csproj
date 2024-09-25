@@ -54,6 +54,7 @@
     <DllExportNamespace>NetHookTD</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
     <PlatformTarget>x86</PlatformTarget>
+	<DllExportPlatform>x86</DllExportPlatform>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
     <DllExportOurILAsm>false</DllExportOurILAsm>
