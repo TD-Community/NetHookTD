@@ -1,21 +1,19 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using NetHookTD;
-
-
-
 
 namespace NetHookTDTest
 {
      internal class Program
     {
-        // For testing first set the needed TD version
-        public const string TDVersion = "40";
+        // For testing, first set the needed TD version
+        public const string TDVersion = "75";
         public const string cdlli_dll = "cdlli" + TDVersion + ".dll";
         public const string vti_dll = "vti" + TDVersion + ".dll";
 
         // Make sure to set the folder location of the needed TD runtime/IDE installation
-        public const string TDInstallation = @"D:\Team Developer\Team Developer 4.0\";
+        public const string TDInstallation = @"C:\Program Files (x86)\Gupta\Team Developer 7.5\";
 
         static void Main(string[] args)
         {
@@ -34,6 +32,15 @@ namespace NetHookTDTest
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Change the constants for TD version and location to use a different TD version (v5.1 and up)\n");
             Console.ForegroundColor = ConsoleColor.White;
+
+            if (!File.Exists(TDInstallation + cdlli_dll))
+            {
+                Console.WriteLine("\nTD runtime file not found : " + TDInstallation + cdlli_dll);
+                Console.WriteLine($"\nPress enter to abort");
+                Console.ReadLine();
+                Environment.Exit(1);
+            }
+
             Console.WriteLine($"Press enter to start the tests");
             Console.ReadLine();
 
@@ -76,7 +83,6 @@ namespace NetHookTDTest
                 DATETIME dateConstruct = SalDateConstruct(2023, 11, 26, 13, 10, 59);
                 LogToConsole($"SalDateConstruct() -> {NetHookTDClient.DATETIMEToString(dateConstruct)}");
 
-                int len = 0;
                 UIntPtr errorTextPtr = SqlGetErrorTextX(1);
                 string ErrText = NetHookTDClient.HStringToString(errorTextPtr);
                 LogToConsole($"SqlGetErrorTextX(1) -> {ErrText}");
@@ -225,7 +231,6 @@ namespace NetHookTDTest
 
             UIntPtr dateTextPtr;
             int len;
-            IntPtr datePtr;
             string dateText;
 
             //NetHookTDClient hookClient = new NetHookTDClient();
