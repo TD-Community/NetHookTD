@@ -41,7 +41,5 @@ namespace NetHookTD
                     return SalDateToStr(date, ref datestring);
             }
         }
-
-
     }
 }

@@ -10,12 +10,12 @@ namespace NetHookTDTest
      internal class Program
     {
         // For testing first set the needed TD version
-        public const string TDVersion = "75";
+        public const string TDVersion = "40";
         public const string cdlli_dll = "cdlli" + TDVersion + ".dll";
         public const string vti_dll = "vti" + TDVersion + ".dll";
 
         // Make sure to set the folder location of the needed TD runtime/IDE installation
-        public const string TDInstallation = @"C:\Program Files (x86)\Gupta\Team Developer 7.5\";
+        public const string TDInstallation = @"D:\Team Developer\Team Developer 4.0\";
 
         static void Main(string[] args)
         {
@@ -78,10 +78,7 @@ namespace NetHookTDTest
 
                 int len = 0;
                 UIntPtr errorTextPtr = SqlGetErrorTextX(1);
-                // Get address of actual string buffer. len is byte length including null terminator.
-                IntPtr TextPtr = SWinStringGetBuffer(errorTextPtr, ref len);
-                // Convert LPWSTR to .NET String.
-                string ErrText = Marshal.PtrToStringUni(TextPtr, (len - 1) / 2);
+                string ErrText = NetHookTDClient.HStringToString(errorTextPtr);
                 LogToConsole($"SqlGetErrorTextX(1) -> {ErrText}");
 
                 // Call function and receive a LPHSTRING
@@ -89,11 +86,8 @@ namespace NetHookTDTest
                 
                 int nret = SalDateToStr(dateCurrent, ref dateTextPtr);
 
-                // Get address of actual string buffer. len is byte length including null terminator.
-                IntPtr datePtr = SWinStringGetBuffer(dateTextPtr, ref len);
-
                 // Convert LPWSTR to .NET String.
-                string dateText = Marshal.PtrToStringUni(datePtr, (len - 1) / 2);
+                string dateText = NetHookTDClient.HStringToString(dateTextPtr);
                 LogToConsole(@"SalDateToStr() -> " + dateText);
 
 
@@ -242,10 +236,7 @@ namespace NetHookTDTest
             // Call function and receive a LPHSTRING
             dateTextPtr = new UIntPtr(0);
             len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
-            datePtr = SWinStringGetBuffer(dateTextPtr, ref len);
-
-            // Convert LPWSTR to .NET String.
-            dateText = Marshal.PtrToStringUni(datePtr, (len - 1) / 2);
+            dateText = NetHookTDClient.HStringToString(dateTextPtr);
             LogToConsole($"(Original) SalDateToStr -> {dateText}");
 
             // Install the hook
@@ -255,10 +246,7 @@ namespace NetHookTDTest
             // Call function and receive a LPHSTRING
             dateTextPtr = new UIntPtr(0);
             len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
-            datePtr = SWinStringGetBuffer(dateTextPtr, ref len);
-
-            // Convert LPWSTR to .NET String.
-            dateText = Marshal.PtrToStringUni(datePtr, (len - 1) / 2);
+            dateText = NetHookTDClient.HStringToString(dateTextPtr);
             LogToConsole($"(Hooked) SalDateToStr -> {dateText}");
 
             //Remove the hook

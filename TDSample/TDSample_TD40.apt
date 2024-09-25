@@ -1,0 +1,882 @@
+Application Description: NetHookTD test application.
+		
+		For TD 4.0, TD 4.1 and TD 4.2  (ANSI)
+		
+		Hook into TD runtime and redefine how Sal/Vis functions work.
+		To be used for features like: extra logging, changing function behavior, creating mock functionality, custom fixing function bugs etc etc
+		
+		
+		Shows:
+		
+		- External function declarations for NetHookTD assembly without using GAIL.
+		- Usage of the NetHookTD exported functions
+		- Calling some Sal/Vis functions which are hooked (using 3 variants)
+		
+		Make sure these dll's are present in the application folder:
+		
+		- NetHookTD.dll
+		- EasyHook.dll
+		- EasyHook32.dll
+		- EasyLoad32.dll
+		
+		
+		Get more info and contribute on GitHub:
+		https://github.com/TD-Community/NetHookTD
+		
+		Join the TD Community Forum:
+		https://forum.tdcommunity.net
+		
+		Created by:
+		Dave Rabelink
+		RablinQ ICT
+	Outline Version - 4.0.34
+	Design-time Settings
+.data VIEWINFO
+0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
+0020: 0000000000C20000 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
+0040: FFE1FFFFFF320000 00320000008A0200 00EF010000010000 0001000000010000
+0060: 000F4170706C6963 6174696F6E497465 6D00000000
+.enddata
+.data DT_MAKERUNDLG
+0000: 0900001000000000 000C544453616D70 6C652E6578651154 4453616D706C655F
+0020: 544434302E646C6C 11544453616D706C 655F544434302E61 7063000001010100
+0040: 6400000000000000 0000000000000000 0011544453616D70 6C655F544434302E
+0060: 6170641154445361 6D706C655F544434 302E646C6C115444 53616D706C655F54
+0080: 4434302E61706300 0001010100640000 0011544453616D70 6C655F544434302E
+00A0: 61706C1154445361 6D706C655F544434 302E646C6C115444 53616D706C655F54
+00C0: 4434302E61706300 0001010100640000 0011544453616D70 6C655F544434302E
+00E0: 6578651154445361 6D706C655F544434 302E646C6C115444 53616D706C655F54
+0100: 4434302E61706300 0001010100640000 0011544453616D70 6C655F544434302E
+0120: 646C6C1154445361 6D706C655F544434 302E646C6C115444 53616D706C655F54
+0140: 4434302E61706300 0001010100640000 0011544453616D70 6C655F544434302E
+0160: 646C6C1154445361 6D706C655F544434 302E646C6C115444 53616D706C655F54
+0180: 4434302E61706300 0001010100640000 0000000000000000 0000000000000000
+01A0: 0000000000000000 0000000100000001 0000000100010000 0000000000000100
+01C0: 0010000000000000 000000000000
+.enddata
+		Outline Window State: Normal
+		Outline Window Location and Size
+			Left: Default
+			Top: Default
+			Width:  Default
+			Height: Default
+		Options Box Location
+			Visible? Yes
+			Left: Default
+			Top: Default
+			Width:  Default
+			Height: Default
+		Class Editor Location
+			Visible? No
+			Left: Default
+			Top: Default
+			Width:  Default
+			Height: Default
+		Tool Palette Location
+			Visible? No
+			Left: Default
+			Top: Default
+		Fully Qualified External References? Yes
+		Reject Multiple Window Instances? No
+		Enable Runtime Checks Of External References? Yes
+		Use Release 4.0 Scope Rules? No
+		Edit Fields Read Only On Disable? No
+	Libraries
+		File Include: vtstr.apl
+	Global Declarations
+		Window Defaults
+			Tool Bar
+				Display Style? Etched
+				Font Name: Microsoft Sans Serif
+				Font Size: System Default
+				Font Enhancement: System Default
+				Text Color: System Default
+				Background Color: System Default
+			Form Window
+				Display Style? Etched
+				Font Name: Microsoft Sans Serif
+				Font Size: 10
+				Font Enhancement: System Default
+				Text Color: System Default
+				Background Color: System Default
+			Dialog Box
+				Display Style? Etched
+				Font Name: Microsoft Sans Serif
+				Font Size: System Default
+				Font Enhancement: System Default
+				Text Color: System Default
+				Background Color: System Default
+			Top Level Table Window
+				Font Name: Microsoft Sans Serif
+				Font Size: System Default
+				Font Enhancement: System Default
+				Text Color: System Default
+				Background Color: System Default
+			Data Field
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Multiline Field
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Spin Field
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Background Text
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Pushbutton
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+			Radio Button
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Check Box
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Option Button
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+			Group Box
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+				! Line:  Color: Use Parent
+					Resource Id: 50326
+					Class Child Ref Key: 0
+					Class ChildKey: 0
+					Class:
+					Coordinates
+						Begin X:  Default
+						Begin Y:  Default
+						End X:  Default
+						End Y:  Default
+					Visible? Yes
+					Line Style: Solid
+					Line Thickness: 1
+					Line Color: Default
+			Child Table Window
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			List Box
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Combo Box
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+			Line
+				Line Color: Use Parent
+			Frame
+				Border Color: Use Parent
+				Background Color: Use Parent
+			Picture
+				Border Color: Use Parent
+				Background Color: Use Parent
+			! Date Time Picker
+				Text Color: Use Parent
+				Background Color: Use Parent
+			! Child Grid Window
+				Font Name: Use Parent
+				Font Size: Use Parent
+				Font Enhancement: Use Parent
+				Text Color: Use Parent
+				Background Color: Use Parent
+		Formats
+			Number: 0'%'
+			Number: #0
+			Number: ###000
+			Number: ###000;'('###000')'
+			Date/Time: hh:mm:ss AMPM
+			Date/Time: M/d/yy
+			Date/Time: MM-dd-yy
+			Date/Time: dd-MMM-yyyy
+			Date/Time: MMM d, yyyy
+			Date/Time: MMM d, yyyy hh:mm AMPM
+			Date/Time: MMMM d, yyyy hh:mm AMPM
+		External Functions
+			Library name: NetHookTD.dll
+				ThreadSafe: No
+				Function: NH_InstallHook
+					Description:
+					Export Ordinal: 0
+					Returns
+						Boolean: BOOL
+					Parameters
+						Number: INT
+						Number: INT
+				Function: NH_RemoveHook
+					Description:
+					Export Ordinal: 0
+					Returns
+						Boolean: BOOL
+					Parameters
+						Number: INT
+				Function: NH_RemoveAllHooks
+					Description:
+					Export Ordinal: 0
+					Returns
+						Boolean: BOOL
+					Parameters
+				Function: NH_GetTestMode
+					Description:
+					Export Ordinal: 0
+					Returns
+						Boolean: BOOL
+					Parameters
+				Function: NH_SetTestMode
+					Description:
+					Export Ordinal: 0
+					Returns
+					Parameters
+						Boolean: BOOL
+				Function: NH_GetLastMsgA
+					Description:
+					Export Ordinal: 0
+					Returns
+						String: LPSTR
+					Parameters
+				Function: NH_GetHookInfo
+					Description:
+					Export Ordinal: 0
+					Returns
+						Boolean: BOOL
+					Parameters
+						Number: INT
+						Receive Boolean: LPBOOL
+						Receive Number: LPINT
+				Function: NH_GetDetectedTDVersion
+					Description:
+					Export Ordinal: 0
+					Returns
+						String: LPSTR
+					Parameters
+		Constants
+.data CCDATA
+0000: 3000000000000000 0000000000000000 00000000
+.enddata
+.data CCSIZE
+0000: 1400
+.enddata
+			System
+				Number: HOOKID_SalGetVersion	= 1
+				Number: HOOKID_SalDateCurrent	= 2
+				Number: HOOKID_SalDateToStr	= 3
+				Number: HOOKID_VisStrChoose	= 4
+				Number: HOOKID_SalNumberRound	= 5
+			User
+			Enumerations
+		Resources
+		Variables
+		Internal Functions
+		Named Menus
+		Class Definitions
+		Default Classes
+			MDI Window: cBaseMDI
+			Form Window:
+			Dialog Box:
+			Table Window:
+			Quest Window:
+			Data Field:
+			Spin Field:
+			Multiline Field:
+			Pushbutton:
+			Radio Button:
+			Option Button:
+			Check Box:
+			Child Table:
+			Quest Child Window: cQuickDatabase
+			List Box:
+			Combo Box:
+			Picture:
+			Vertical Scroll Bar:
+			Horizontal Scroll Bar:
+			Column:
+			Background Text:
+			Group Box:
+			Line:
+			Frame:
+			Custom Control:
+			ActiveX:
+			! Child Grid:
+			! Date Picker:
+			! Date Time Picker:
+			! Tab Bar:
+		Application Actions
+			On SAM_AppStartup
+				Call NH_RemoveAllHooks( )
+	Form Window: frmTestNetHookTD
+		Class:
+		Property Template:
+		Class DLL Name:
+		Title: Test NetHookTD
+		Icon File:
+		Accessories Enabled? No
+		Visible? Yes
+		Display Settings
+			Display Style? Default
+			Visible at Design time? Yes
+			Automatically Created at Runtime? Yes
+			Initial State: Normal
+			Maximizable? Yes
+			Minimizable? Yes
+			Allow Child Docking? No
+			Docking Orientation: All
+			System Menu? Yes
+			Resizable? Yes
+			Window Location and Size
+				Left: 2.013"
+				Top: 1.354"
+				Width:  14.457"
+				Width Editable? Yes
+				Height: 4.0"
+				Height Editable? Yes
+			Form Size
+				Width:  Default
+				Height: Default
+				Number of Pages: Dynamic
+			Font Name: Default
+			Font Size: Default
+			Font Enhancement: Default
+			Text Color: Default
+			Background Color: Default
+		Description:
+		Named Menus
+		Menu
+		Tool Bar
+			Display Settings
+				Display Style? Default
+				Location? Top
+				Visible? Yes
+				Size: Default
+				Size Editable? Yes
+				Docking Toolbar? No
+				Toolbar Docking Orientation: Top | Bottom
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Text Color: Default
+				Background Color: Default
+				Resizable? No
+			Contents
+		Contents
+			Pushbutton: pbTestSalGetVersion
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Title: Test SalGetVersion
+				Window Location and Size
+					Left: 2.086"
+					Top: 0.563"
+					Width:  2.456"
+					Width Editable? Yes
+					Height: 0.292"
+					Height Editable? Yes
+				Visible? Yes
+				Keyboard Accelerator: (none)
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Picture File Name:
+				Picture Transparent Color: None
+				Image Style: Single
+				Text Color: Default
+				Background Color: Default
+				Button Appearance: Standard
+				Message Actions
+					On SAM_Click
+						Call Test_SalGetVersion( )
+			Pushbutton: pbTestSalDateCurrent
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Title: Test SalDateCurrent
+				Window Location and Size
+					Left: 2.086"
+					Top: 0.969"
+					Width:  2.456"
+					Width Editable? Yes
+					Height: 0.292"
+					Height Editable? Yes
+				Visible? Yes
+				Keyboard Accelerator: (none)
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Picture File Name:
+				Picture Transparent Color: None
+				Image Style: Single
+				Text Color: Default
+				Background Color: Default
+				Button Appearance: Standard
+				Message Actions
+					On SAM_Click
+						Call Test_SalDateCurrent( )
+			Pushbutton: pbTestSalDateToStr
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Title: Test SalDateToStr
+				Window Location and Size
+					Left: 2.086"
+					Top: 1.375"
+					Width:  2.456"
+					Width Editable? Yes
+					Height: 0.292"
+					Height Editable? Yes
+				Visible? Yes
+				Keyboard Accelerator: (none)
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Picture File Name:
+				Picture Transparent Color: None
+				Image Style: Single
+				Text Color: Default
+				Background Color: Default
+				Button Appearance: Standard
+				Message Actions
+					On SAM_Click
+						Call Test_SalDateToStr( )
+			Pushbutton: pbTestVisStrChoose
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Title: Test VisStrChoose
+				Window Location and Size
+					Left: 2.086"
+					Top: 1.781"
+					Width:  2.456"
+					Width Editable? Yes
+					Height: 0.292"
+					Height Editable? Yes
+				Visible? Yes
+				Keyboard Accelerator: (none)
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Picture File Name:
+				Picture Transparent Color: None
+				Image Style: Single
+				Text Color: Default
+				Background Color: Default
+				Button Appearance: Standard
+				Message Actions
+					On SAM_Click
+						Call Test_VisStrChoose( )
+			Pushbutton: pbTestSalNumberRound
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Title: Test SalNumberRound
+				Window Location and Size
+					Left: 2.086"
+					Top: 2.188"
+					Width:  2.456"
+					Width Editable? Yes
+					Height: 0.292"
+					Height Editable? Yes
+				Visible? Yes
+				Keyboard Accelerator: (none)
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Picture File Name:
+				Picture Transparent Color: None
+				Image Style: Single
+				Text Color: Default
+				Background Color: Default
+				Button Appearance: Standard
+				Message Actions
+					On SAM_Click
+						Call Test_SalNumberRound( )
+			Multiline Field: mlLog
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Data
+					Maximum Data Length: 50000
+					String Type: String
+					Editable? Yes
+				Display Settings
+					Border? Yes
+					Word Wrap? No
+					Vertical Scroll? Yes
+					Window Location and Size
+						Left: 4.729"
+						Top: 0.115"
+						Width:  9.014"
+						Width Editable? Yes
+						Height: 3.633"
+						Height Editable? Yes
+					Visible? Yes
+					Font Name: Default
+					Font Size: Default
+					Font Enhancement: Default
+					Text Color: Default
+					Background Color: Default
+				Message Actions
+			Combo Box: cmbVariant
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Property Template:
+				Class DLL Name:
+				Window Location and Size
+					Left: 1.4"
+					Top: 0.104"
+					Width:  3.171"
+					Width Editable? Yes
+					Height: 2.938"
+					Height Editable? Yes
+				Visible? Yes
+				Editable? No
+				String Type: String
+				Maximum Data Length: Default
+				Sorted? No
+				Always Show List? No
+				Vertical Scroll? Yes
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Text Color: Default
+				Background Color: Default
+				Input Mask: Unformatted
+				List Initialization
+				Message Actions
+					On SAM_Create
+						Call SalListAdd( hWndItem, "Adapt values (variant -1)" )
+						Call SalListAdd( hWndItem, "Original call (variant 0 )" )
+						Call SalListAdd( hWndItem, "Show msgbox (variant 1 )" )
+						Call SalListSetSelect( hWndItem, 0 )
+			Background Text: bkgd1
+				Resource Id: 845
+				Class Child Ref Key: 0
+				Class ChildKey: 0
+				Class:
+				Window Location and Size
+					Left: 0.057"
+					Top: 0.135"
+					Width:  1.229"
+					Width Editable? Yes
+					Height: 0.167"
+					Height Editable? Yes
+				Visible? Yes
+				Justify: Right
+				Font Name: Default
+				Font Size: Default
+				Font Enhancement: Default
+				Text Color: Default
+				Background Color: Default
+				! Title: Hook variant
+		Functions
+			Function: Test_SalGetVersion
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+					Number: nRet1
+					Number: nRet2
+					Number: nVariant
+					Boolean: bIsHooked
+					String: sMsg
+					String: sDate
+					String: sChosen
+					Date/Time: dtDate
+					Boolean: bTestMode
+					Boolean: bOk
+				Actions
+					Call ClearTrace( )
+					!
+					! Remove all hooks to be sure the test is correctly using initial state
+					Call NH_RemoveAllHooks()
+					!
+					! First call the original non-hooked function and log the result
+					Set nRet1 = SalGetVersion(  )
+					Call Trace( "(Original) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Install the hook using given variant
+					Set bOk = NH_InstallHook( HOOKID_SalGetVersion, GetVariantMode( ) )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the function again which is now hooked and log the result
+					Set nRet1 = SalGetVersion(  )
+					Call Trace( "(Hooked) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Remove the hook so the function works as normal
+					Call NH_RemoveHook( HOOKID_SalGetVersion )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the now unhooked function and log the result
+					Set nRet1 = SalGetVersion(  )
+					Call Trace( "(Original) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Clean up all hooks to be sure
+					Call NH_RemoveAllHooks()
+					Call Trace( NH_GetLastMsgA( ) )
+			Function: Test_SalDateCurrent
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+					Number: nRet1
+					Number: nRet2
+					Number: nVariant
+					Boolean: bIsHooked
+					String: sMsg
+					String: sDate
+					String: sChosen
+					Date/Time: dtDate
+					Boolean: bTestMode
+					Boolean: bOk
+				Actions
+					Call ClearTrace( )
+					!
+					! Remove all hooks to be sure the test is correctly using initial state
+					Call NH_RemoveAllHooks()
+					!
+					! First call the original non-hooked function and log the result
+					Set dtDate = SalDateCurrent(  )
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Original) SalDateCurrent( ) -> " || sDate )
+					!
+					! Install the hook using given variant
+					Set bOk = NH_InstallHook( HOOKID_SalDateCurrent, GetVariantMode( ) )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the function again which is now hooked and log the result
+					Set dtDate = SalDateCurrent(  )
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Hooked) SalDateCurrent( ) -> " || sDate )
+					!
+					! Remove the hook so the function works as normal
+					Call NH_RemoveHook( HOOKID_SalDateCurrent )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the now unhooked function and log the result
+					Set dtDate = SalDateCurrent(  )
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Original) SalDateCurrent( ) -> " || sDate )
+					!
+					! Clean up all hooks to be sure
+					Call NH_RemoveAllHooks()
+					Call Trace( NH_GetLastMsgA( ) )
+			Function: Test_SalDateToStr
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+					Number: nRet1
+					Number: nRet2
+					Number: nVariant
+					Boolean: bIsHooked
+					String: sMsg
+					String: sDate
+					String: sChosen
+					Date/Time: dtDate
+					Boolean: bTestMode
+					Boolean: bOk
+				Actions
+					Call ClearTrace( )
+					!
+					! Remove all hooks to be sure the test is correctly using initial state
+					Call NH_RemoveAllHooks()
+					!
+					Set dtDate = SalDateCurrent(  )
+					! First call the original non-hooked function and log the result
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Original) SalDateToStr( ) -> " || sDate )
+					!
+					! Install the hook using given variant
+					Set bOk = NH_InstallHook( HOOKID_SalDateToStr, GetVariantMode( ) )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the function again which is now hooked and log the result
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Hooked) SalDateToStr( ) -> " || sDate )
+					!
+					! Remove the hook so the function works as normal
+					Call NH_RemoveHook( HOOKID_SalDateToStr )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the now unhooked function and log the result
+					Call SalDateToStr( dtDate, sDate )
+					Call Trace( "(Original) SalDateToStr( ) -> " || sDate )
+					!
+					! Clean up all hooks to be sure
+					Call NH_RemoveAllHooks()
+					Call Trace( NH_GetLastMsgA( ) )
+			Function: Test_VisStrChoose
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+					Number: nRet1
+					Number: nRet2
+					Number: nVariant
+					Boolean: bIsHooked
+					String: sMsg
+					String: sDate
+					String: sChosen
+					Date/Time: dtDate
+					Boolean: bTestMode
+					Boolean: bOk
+				Actions
+					Call ClearTrace( )
+					!
+					! Remove all hooks to be sure the test is correctly using initial state
+					Call NH_RemoveAllHooks()
+					!
+					! First call the original non-hooked function and log the result
+					Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+					Call Trace( "(Original) VisStrChoose( ) -> " || sChosen )
+					!
+					! Install the hook using given variant
+					Set bOk = NH_InstallHook( HOOKID_VisStrChoose, GetVariantMode( ) )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the function again which is now hooked and log the result
+					Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+					Call Trace( "(Hooked) VisStrChoose( ) -> " || sChosen )
+					!
+					! Remove the hook so the function works as normal
+					Call NH_RemoveHook( HOOKID_VisStrChoose )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the now unhooked function and log the result
+					Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+					Call Trace( "(Original) VisStrChoose( ) -> " || sChosen )
+					!
+					! Clean up all hooks to be sure
+					Call NH_RemoveAllHooks()
+					Call Trace( NH_GetLastMsgA( ) )
+			Function: Test_SalNumberRound
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+					Number: nRet1
+					Number: nRet2
+					Number: nToRound
+					Boolean: bIsHooked
+					String: sMsg
+					String: sDate
+					String: sChosen
+					Date/Time: dtDate
+					Boolean: bTestMode
+					Boolean: bOk
+				Actions
+					Call ClearTrace( )
+					!
+					! Remove all hooks to be sure the test is correctly using initial state
+					Call NH_RemoveAllHooks()
+					!
+					Set nToRound = 9.56
+					! First call the original non-hooked function and log the result
+					Set nRet1 = SalNumberRound( nToRound )
+					Call Trace( "(Original) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Install the hook using given variant
+					Set bOk = NH_InstallHook( HOOKID_SalNumberRound, GetVariantMode( ) )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the function again which is now hooked and log the result
+					Set nRet1 = SalNumberRound( nToRound )
+					Call Trace( "(Hooked) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Remove the hook so the function works as normal
+					Call NH_RemoveHook( HOOKID_SalNumberRound )
+					Call Trace( NH_GetLastMsgA( ) )
+					!
+					! Call the now unhooked function and log the result
+					Set nRet1 = SalNumberRound( nToRound )
+					Call Trace( "(Original) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+					!
+					! Clean up all hooks to be sure
+					Call NH_RemoveAllHooks()
+					Call Trace( NH_GetLastMsgA( ) )
+			Function: Trace
+				Description:
+				Returns
+				Parameters
+					String: psTraceMsg
+				Static Variables
+				Local variables
+				Actions
+					Set mlLog = mlLog || psTraceMsg || "
+							"
+			Function: GetVariantMode
+				Description:
+				Returns
+					Number:
+				Parameters
+				Static Variables
+				Local variables
+					Number: nIndex
+				Actions
+					Set nIndex = SalListQuerySelection( cmbVariant )
+					If nIndex = 0
+						Return -1
+					Else If nIndex = 1
+						Return 0
+					Else If nIndex = 2
+						Return 1
+					Else
+						Return 0
+			Function: ClearTrace
+				Description:
+				Returns
+				Parameters
+				Static Variables
+				Local variables
+				Actions
+					Set mlLog = STRING_Null
+		Window Parameters
+		Window Variables
+		Message Actions

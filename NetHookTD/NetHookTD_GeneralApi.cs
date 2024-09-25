@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace NetHookTD
@@ -197,14 +198,26 @@ namespace NetHookTD
         private static string TDVersion = "";
         private static string cdlli_dll = "";
         private static string vti_dll = "";
+        private static bool IsUnicode = false;
 
         public static string HStringToString(UIntPtr HString)
         {
             int len = 0;
+            string StringVal;
 
             IntPtr TextPtr = SWinStringGetBuffer(HString, ref len);
-            // Convert LPWSTR to .NET String.
-            string StringVal = Marshal.PtrToStringUni(TextPtr, (len - 2) / 2);
+
+            if (IsUnicode)
+            {
+                // Convert LPWSTR to .NET String.
+                StringVal = Marshal.PtrToStringUni(TextPtr, (len - 2) / 2);
+            }
+            else
+            {
+                // Convert LPSTR to .NET String.
+                StringVal = Marshal.PtrToStringAnsi(TextPtr, (len - 1));
+            }
+            
             return StringVal;
         }
 
@@ -222,8 +235,19 @@ namespace NetHookTD
 
         public static bool StringToHString(string text, ref UIntPtr hstring)
         {
-            byte[] newStringBytes = Encoding.Unicode.GetBytes(text);
-            byte[] nullTerminator = new byte[] { 0, 0 }; // null-terminate the string
+            byte[] newStringBytes;
+            byte[] nullTerminator;
+            if (IsUnicode)
+            {
+                newStringBytes = Encoding.Unicode.GetBytes(text);
+                nullTerminator = new byte[] { 0, 0 }; // null-terminate the string
+            }
+            else
+            {
+                newStringBytes = Encoding.ASCII.GetBytes(text);
+                nullTerminator = new byte[] { 0 }; // null-terminate the string
+            }
+                
             byte[] finalBytes = new byte[newStringBytes.Length + nullTerminator.Length];
 
             Array.Copy(newStringBytes, finalBytes, newStringBytes.Length);
@@ -365,6 +389,8 @@ namespace NetHookTD
                 // When other dll's are needed, add them here (eg cstruct etc)
                 cdlli_dll = $"cdlli{TDVersion}.dll";
                 vti_dll = $"vti{TDVersion}.dll";
+                if (Int32.Parse(TDVersion)>50)
+                    IsUnicode = true ;
                 Trace($"DetectTDVersion() -> Found TD version: '{TDVersion}' using these dll's : {cdlli_dll},{vti_dll}");
             }
         }

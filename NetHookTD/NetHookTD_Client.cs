@@ -67,9 +67,33 @@ namespace NetHookTD
             // Win32 unmanaged side. Called from TD exported functions
 
             string managedString = LastMsg;
+            IntPtr unmanagedString;
 
             // Allocate unmanaged memory and copy the string data to unmanaged memory
-            IntPtr unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            if (IsUnicode)
+                unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            else
+                unmanagedString = Marshal.StringToHGlobalAnsi(managedString);
+
+
+            // Return the pointer to the unmanaged memory
+            return unmanagedString;
+        }
+
+        [DllExport(CallingConvention.StdCall)]
+        private static IntPtr NH_GetLastMsgA()
+        {
+            // Win32 unmanaged side. Called from TD exported functions
+
+            string managedString = LastMsg;
+            IntPtr unmanagedString;
+
+            // Allocate unmanaged memory and copy the string data to unmanaged memory
+            if (IsUnicode)
+                unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            else
+                unmanagedString = Marshal.StringToHGlobalAnsi(managedString);
+
 
             // Return the pointer to the unmanaged memory
             return unmanagedString;
@@ -81,9 +105,31 @@ namespace NetHookTD
             // Win32 unmanaged side. Called from TD exported functions
 
             string managedString = GetDetectedTDVersion();
+            IntPtr unmanagedString;
 
             // Allocate unmanaged memory and copy the string data to unmanaged memory
-            IntPtr unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            if (IsUnicode)
+                unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            else
+                unmanagedString = Marshal.StringToHGlobalAnsi(managedString);
+
+            // Return the pointer to the unmanaged memory
+            return unmanagedString;
+        }
+
+        [DllExport(CallingConvention.StdCall)]
+        private static IntPtr NH_GetDetectedTDVersionA()
+        {
+            // Win32 unmanaged side. Called from TD exported functions
+
+            string managedString = GetDetectedTDVersion();
+            IntPtr unmanagedString;
+
+            // Allocate unmanaged memory and copy the string data to unmanaged memory
+            if (IsUnicode)
+                unmanagedString = Marshal.StringToHGlobalUni(managedString);
+            else
+                unmanagedString = Marshal.StringToHGlobalAnsi(managedString);
 
             // Return the pointer to the unmanaged memory
             return unmanagedString;
