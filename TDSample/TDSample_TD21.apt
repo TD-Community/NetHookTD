@@ -1,6 +1,6 @@
 Application Description: NetHookTD test application.
 		
-		For TD 4.0, TD 4.1 and TD 4.2  (ANSI)
+		For TD 2.x, TD 3.x and TD 4.x  (ANSI)
 		
 		Hook into TD runtime and redefine how Sal/Vis functions work.
 		To be used for features like: extra logging, changing function behavior, creating mock functionality, custom fixing function bugs etc etc
@@ -29,7 +29,7 @@ Application Description: NetHookTD test application.
 		Created by:
 		Dave Rabelink
 		RablinQ ICT
-	Outline Version - 4.0.34
+	Outline Version - 4.0.28
 	Design-time Settings
 .data VIEWINFO
 0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
@@ -80,7 +80,7 @@ Application Description: NetHookTD test application.
 		Reject Multiple Window Instances? No
 		Enable Runtime Checks Of External References? Yes
 		Use Release 4.0 Scope Rules? No
-		Edit Fields Read Only On Disable? No
+		! Edit Fields Read Only On Disable? No
 	Libraries
 		File Include: vtstr.apl
 	Global Declarations
@@ -349,16 +349,14 @@ Application Description: NetHookTD test application.
 			Initial State: Normal
 			Maximizable? Yes
 			Minimizable? Yes
-			Allow Child Docking? No
-			Docking Orientation: All
 			System Menu? Yes
 			Resizable? Yes
 			Window Location and Size
 				Left: 2.013"
 				Top: 1.354"
-				Width:  14.457"
+				Width:  14.486"
 				Width Editable? Yes
-				Height: 4.0"
+				Height: 4.563"
 				Height Editable? Yes
 			Form Size
 				Width:  Default
@@ -379,15 +377,15 @@ Application Description: NetHookTD test application.
 				Visible? Yes
 				Size: Default
 				Size Editable? Yes
-				Docking Toolbar? No
-				Toolbar Docking Orientation: Top | Bottom
 				Font Name: Default
 				Font Size: Default
 				Font Enhancement: Default
 				Text Color: Default
 				Background Color: Default
-				Resizable? No
 			Contents
+			! Resizable? No
+			! Docking Toolbar? No
+			! Toolbar Docking Orientation: Top | Bottom
 		Contents
 			Pushbutton: pbTestSalGetVersion
 				Class Child Ref Key: 0
@@ -413,10 +411,10 @@ Application Description: NetHookTD test application.
 				Image Style: Single
 				Text Color: Default
 				Background Color: Default
-				Button Appearance: Standard
 				Message Actions
 					On SAM_Click
 						Call Test_SalGetVersion( )
+				! Button Appearance: Standard
 			Pushbutton: pbTestSalDateCurrent
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -441,10 +439,10 @@ Application Description: NetHookTD test application.
 				Image Style: Single
 				Text Color: Default
 				Background Color: Default
-				Button Appearance: Standard
 				Message Actions
 					On SAM_Click
 						Call Test_SalDateCurrent( )
+				! Button Appearance: Standard
 			Pushbutton: pbTestSalDateToStr
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -469,10 +467,10 @@ Application Description: NetHookTD test application.
 				Image Style: Single
 				Text Color: Default
 				Background Color: Default
-				Button Appearance: Standard
 				Message Actions
 					On SAM_Click
 						Call Test_SalDateToStr( )
+				! Button Appearance: Standard
 			Pushbutton: pbTestVisStrChoose
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -497,10 +495,10 @@ Application Description: NetHookTD test application.
 				Image Style: Single
 				Text Color: Default
 				Background Color: Default
-				Button Appearance: Standard
 				Message Actions
 					On SAM_Click
 						Call Test_VisStrChoose( )
+				! Button Appearance: Standard
 			Pushbutton: pbTestSalNumberRound
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -525,10 +523,10 @@ Application Description: NetHookTD test application.
 				Image Style: Single
 				Text Color: Default
 				Background Color: Default
-				Button Appearance: Standard
 				Message Actions
 					On SAM_Click
 						Call Test_SalNumberRound( )
+				! Button Appearance: Standard
 			Multiline Field: mlLog
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -590,7 +588,7 @@ Application Description: NetHookTD test application.
 						Call SalListAdd( hWndItem, "Original call (variant 0 )" )
 						Call SalListAdd( hWndItem, "Show msgbox (variant 1 )" )
 						Call SalListSetSelect( hWndItem, 0 )
-			Background Text: bkgd1
+			Background Text: Hook variant
 				Resource Id: 845
 				Class Child Ref Key: 0
 				Class ChildKey: 0
@@ -880,3 +878,5 @@ Application Description: NetHookTD test application.
 		Window Parameters
 		Window Variables
 		Message Actions
+		! Allow Child Docking? No
+		! Docking Orientation: All

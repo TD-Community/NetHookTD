@@ -199,6 +199,13 @@ namespace NetHookTD
         private static string cdlli_dll = "";
         private static string vti_dll = "";
         private static bool IsUnicode = false;
+        private static bool NeedsSalApiInit = false;
+
+        public static void UseSalApiForNet()
+        {
+            NeedsSalApiInit = true;
+            InitGeneralApi();
+        }
 
         public static string HStringToString(UIntPtr HString)
         {
@@ -337,10 +344,15 @@ namespace NetHookTD
                 SWinCvtDoubleToNumber = GetFunctionDelegate<SWinCvtDoubleToNumberDelegate>(cdlli_dll, "SWinCvtDoubleToNumber");
                 SWinCvtNumberToInt = GetFunctionDelegate<SWinCvtNumberToIntDelegate>(cdlli_dll, "SWinCvtNumberToInt");
                 SWinCvtNumberToDouble = GetFunctionDelegate<SWinCvtNumberToDoubleDelegate>(cdlli_dll, "SWinCvtNumberToDouble");
-                SalApiInit = GetFunctionDelegate<SalApiInitDelegate>(cdlli_dll, "SalApiInit");
-                int ret = SalApiInit();
-                if (ret == 1)
-                    GeneralApiInitialised = true;
+                // When running from TD, no SalApiInit is needed. When running from .NET (Test application) it does
+                if (NeedsSalApiInit)
+                {
+                    SalApiInit = GetFunctionDelegate<SalApiInitDelegate>(cdlli_dll, "SalApiInit");
+                    SalApiInit();
+                }
+
+                GeneralApiInitialised = true;
+
                 Trace($"InitGeneralApi() -> {GeneralApiInitialised}");
             }
 

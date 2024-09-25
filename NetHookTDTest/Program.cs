@@ -47,6 +47,9 @@ namespace NetHookTDTest
             // Force loading TD runtime dll. This simulates running the test within the needed TD version
             SalGetVersion();
 
+            // Running from .NET so we need SalApiInit
+            NetHookTDClient.UseSalApiForNet();
+
             if (true)   // TEST HOOKS
             {
                 Console.WriteLine($"================ Running hooking tests =======================\n");
