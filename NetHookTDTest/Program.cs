@@ -15,7 +15,7 @@ namespace NetHookTDTest
         public const string vti_dll = "vti" + TDVersion + ".dll";
 
         // Make sure to set the folder location of the needed TD runtime/IDE installation
-        public const string TDInstallation = @";C:\Program Files (x86)\Gupta\Team Developer 7.5\";
+        public const string TDInstallation = @"C:\Program Files (x86)\Gupta\Team Developer 7.5\";
 
         static void Main(string[] args)
         {
@@ -25,8 +25,17 @@ namespace NetHookTDTest
             var name = "PATH";
             var scope = EnvironmentVariableTarget.Machine;
             var oldValue = Environment.GetEnvironmentVariable(name, scope);
-            var newValue = oldValue + TDInstallation;
+            var newValue = oldValue + ";" + TDInstallation;
             Environment.SetEnvironmentVariable(name, newValue);
+
+            Console.WriteLine($"***************** NetHookTD settings *****************\n");
+            Console.WriteLine($"TD Version: {TDVersion}");
+            Console.WriteLine($"IDE/Runtime location: {TDInstallation}\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Change the constants for TD version and location to use a different TD version (v5.1 and up)\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Press enter to start the tests");
+            Console.ReadLine();
 
             // Force loading TD runtime dll. This simulates running the test within the needed TD version
             SalGetVersion();

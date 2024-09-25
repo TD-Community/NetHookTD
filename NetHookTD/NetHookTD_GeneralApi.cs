@@ -132,10 +132,6 @@ namespace NetHookTD
         private static SWinStringGetBufferDelegate SWinStringGetBuffer;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void SWinHStringUnlockDelegate(UIntPtr hstring);
-        private static SWinHStringUnlockDelegate SWinHStringUnlock;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SalHStringUnRefDelegate(UIntPtr hstring);
         private static SalHStringUnRefDelegate SalHStringUnRef;
 
@@ -240,7 +236,6 @@ namespace NetHookTD
                 int len = 0;
                 IntPtr newStringPtr = SWinStringGetBuffer(hstring, ref len);
                 Marshal.Copy(finalBytes, 0, newStringPtr, finalBytes.Length);
-                SWinHStringUnlock(hstring);
                 return true;
             }
             else
@@ -306,7 +301,6 @@ namespace NetHookTD
             {
                 SWinInitLPHSTRINGParam = GetFunctionDelegate<SWinInitLPHSTRINGParamDelegate>(cdlli_dll, "SWinInitLPHSTRINGParam");
                 SWinStringGetBuffer = GetFunctionDelegate<SWinStringGetBufferDelegate>(cdlli_dll, "SWinStringGetBuffer");
-                SWinHStringUnlock = GetFunctionDelegate<SWinHStringUnlockDelegate>(cdlli_dll, "SWinHStringUnlock");
                 SalHStringUnRef = GetFunctionDelegate<SalHStringUnRefDelegate>(cdlli_dll, "SalHStringUnRef");
                 SalDateYear = GetFunctionDelegate<SalDateYearDelegate>(cdlli_dll, "SalDateYear");
                 SalDateMonth = GetFunctionDelegate<SalDateMonthDelegate>(cdlli_dll, "SalDateMonth");
