@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetHookTD", "NetHookTD\NetHookTD.csproj", "{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetHookTDTest", "NetHookTDTest\NetHookTDTest.csproj", "{419F86D5-053E-47FA-8062-14B9C6B54E3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}.Debug|x86.ActiveCfg = Debug|x86
+		{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}.Debug|x86.Build.0 = Debug|x86
+		{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}.Release|x86.ActiveCfg = Release|x86
+		{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}.Release|x86.Build.0 = Release|x86
+		{419F86D5-053E-47FA-8062-14B9C6B54E3F}.Debug|x86.ActiveCfg = Debug|x86
+		{419F86D5-053E-47FA-8062-14B9C6B54E3F}.Debug|x86.Build.0 = Debug|x86
+		{419F86D5-053E-47FA-8062-14B9C6B54E3F}.Release|x86.ActiveCfg = Release|x86
+		{419F86D5-053E-47FA-8062-14B9C6B54E3F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAE46B30-6CF1-4A75-B05C-DA800A220BF4}
+	EndGlobalSection
+EndGlobal

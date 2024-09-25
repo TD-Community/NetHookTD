@@ -1,0 +1,965 @@
+.head 0 +  Application Description: Gupta SQLWindows
+Standard Application Template
+.head 1 -  Outline Version - 4.0.57
+.head 1 +  Design-time Settings
+.data VIEWINFO
+0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
+0020: 0000000000C20000 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
+0040: FFE1FFFFFF320000 00320000008A0200 00EF010000010000 0001000000010000
+0060: 00FFFEFF0F410070 0070006C00690063 006100740069006F 006E004900740065
+0080: 006D0000000000
+.enddata
+.head 2 -  Outline Window State: Normal
+.head 2 -  Outline Window Location and Size
+.head 2 -  Options Box Location
+.head 2 -  Class Editor Location
+.head 2 -  Tool Palette Location
+.head 2 -  Fully Qualified External References? Yes
+.head 2 -  Reject Multiple Window Instances? No
+.head 2 -  Enable Runtime Checks Of External References? Yes
+.head 2 -  Use Release 4.0 Scope Rules? No
+.head 2 -  Edit Fields Read Only On Disable? No
+.head 2 -  Assembly Symbol File:
+.head 1 +  Libraries
+.head 2 -  File Include: vtstr.apl
+.head 1 +  Global Declarations
+.head 2 +  Window Defaults
+.head 3 +  Tool Bar
+.head 4 -  Display Style? Etched
+.head 4 -  Font Name: Microsoft Sans Serif
+.head 4 -  Font Size: System Default
+.head 4 -  Font Enhancement: System Default
+.head 4 -  Text Color: System Default
+.head 4 -  Background Color: System Default
+.head 3 +  Form Window
+.head 4 -  Display Style? Etched
+.head 4 -  Font Name: Microsoft Sans Serif
+.head 4 -  Font Size: 10
+.head 4 -  Font Enhancement: System Default
+.head 4 -  Text Color: System Default
+.head 4 -  Background Color: System Default
+.head 3 +  Dialog Box
+.head 4 -  Display Style? Etched
+.head 4 -  Font Name: Microsoft Sans Serif
+.head 4 -  Font Size: System Default
+.head 4 -  Font Enhancement: System Default
+.head 4 -  Text Color: System Default
+.head 4 -  Background Color: System Default
+.head 3 +  Top Level Table Window
+.head 4 -  Font Name: Microsoft Sans Serif
+.head 4 -  Font Size: System Default
+.head 4 -  Font Enhancement: System Default
+.head 4 -  Text Color: System Default
+.head 4 -  Background Color: System Default
+.head 3 +  Top Level Grid Window
+.head 4 -  Font Name: Microsoft Sans Serif
+.head 4 -  Font Size: System Default
+.head 4 -  Font Enhancement: System Default
+.head 4 -  Text Color: System Default
+.head 4 -  Background Color: System Default
+.head 3 +  Data Field
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Multiline Field
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Spin Field
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  Background Text
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Pushbutton
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 3 +  Radio Button
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Check Box
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Option Button
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 3 +  Group Box
+.head 4 -  GroupBox Style: Etched
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Line Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Child Table Window
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  List Box
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Combo Box
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Line
+.head 4 -  Line Color: Use Parent
+.head 3 +  Frame
+.head 4 -  Border Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  Picture
+.head 4 -  Border Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  Date Time Picker
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 3 +  Child Grid Window
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  Rich Text Control
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Date Picker
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 3 +  Tree Control
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 +  Navigation Bar
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 4 -  Flow Direction: Default
+.head 3 -  Pane Separator
+.head 3 +  Tab Bar
+.head 4 -  Font Name: Use Parent
+.head 4 -  Font Size: Use Parent
+.head 4 -  Font Enhancement: Use Parent
+.head 4 -  Text Color: Use Parent
+.head 4 -  Background Color: Use Parent
+.head 3 +  Progress Bar
+.head 4 -  Background Color: Use Parent
+.head 2 +  Formats
+.head 3 -  Number: 0'%'
+.head 3 -  Number: #0
+.head 3 -  Number: ###000
+.head 3 -  Number: ###000;'('###000')'
+.head 3 -  Date/Time: hh:mm:ss AMPM
+.head 3 -  Date/Time: M/d/yy
+.head 3 -  Date/Time: MM-dd-yy
+.head 3 -  Date/Time: dd-MMM-yyyy
+.head 3 -  Date/Time: MMM d, yyyy
+.head 3 -  Date/Time: MMM d, yyyy hh:mm AMPM
+.head 3 -  Date/Time: MMMM d, yyyy hh:mm AMPM
+.head 2 +  External Functions
+.head 3 +  Library name: NetHookTD.dll
+.head 4 -  ThreadSafe: No
+.head 4 +  Function: NH_InstallHook
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  Boolean: BOOL
+.head 5 +  Parameters
+.head 6 -  Number: INT
+.head 6 -  Number: INT
+.head 4 +  Function: NH_RemoveHook
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  Boolean: BOOL
+.head 5 +  Parameters
+.head 6 -  Number: INT
+.head 4 +  Function: NH_RemoveAllHooks
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  Boolean: BOOL
+.head 5 -  Parameters
+.head 4 +  Function: NH_GetTestMode
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  Boolean: BOOL
+.head 5 -  Parameters
+.head 4 +  Function: NH_SetTestMode
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 -  Returns
+.head 5 +  Parameters
+.head 6 -  Boolean: BOOL
+.head 4 +  Function: NH_GetLastMsg
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  String: LPWSTR
+.head 5 -  Parameters
+.head 4 +  Function: NH_GetHookInfo
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  Boolean: BOOL
+.head 5 +  Parameters
+.head 6 -  Number: INT
+.head 6 -  Receive Boolean: LPBOOL
+.head 6 -  Receive Number: LPINT
+.head 4 +  Function: NH_GetDetectedTDVersion
+.head 5 -  Description:
+.head 5 -  Export Ordinal: 0
+.head 5 +  Returns
+.head 6 -  String: LPWSTR
+.head 5 -  Parameters
+.head 2 +  External Assemblies
+.head 2 +  Constants
+.data CCDATA
+0000: 3000000000000000 0000000000000000 0000000000000000 0000000000000000
+0020: 0000000000000000
+.enddata
+.data CCSIZE
+0000: 2800
+.enddata
+.head 3 -  System
+.head 3 +  User
+.head 4 -  Number: HOOKID_SalGetVersion	= 1
+.head 4 -  Number: HOOKID_SalDateCurrent	= 2
+.head 4 -  Number: HOOKID_SalDateToStr	= 3
+.head 4 -  Number: HOOKID_VisStrChoose	= 4
+.head 4 -  Number: HOOKID_SalNumberRound	= 5
+.head 3 -  Enumerations
+.head 2 -  Resources
+.head 2 -  Variables
+.head 2 -  Internal Functions
+.head 2 -  Named Exceptions
+.head 2 -  Named Toolbars
+.head 2 -  Named Menus
+.head 2 -  Class Definitions
+.head 2 +  Default Classes
+.head 3 -  MDI Window: cBaseMDI
+.head 3 -  Form Window:
+.head 3 -  Dialog Box:
+.head 3 -  Table Window:
+.head 3 -  Grid Window:
+.head 3 -  Quest Window:
+.head 3 -  Data Field:
+.head 3 -  Spin Field:
+.head 3 -  Multiline Field:
+.head 3 -  Pushbutton:
+.head 3 -  Radio Button:
+.head 3 -  Option Button:
+.head 3 -  Child Grid:
+.head 3 -  Rich Text Control:
+.head 3 -  Separator:
+.head 3 -  Tree Control:
+.head 3 -  Navigation Bar:
+.head 3 -  Pane Separator:
+.head 3 -  Progress Bar:
+.head 3 -  Check Box:
+.head 3 -  Child Table:
+.head 3 -  Quest Child Window: cQuickDatabase
+.head 3 -  List Box:
+.head 3 -  Combo Box:
+.head 3 -  Picture:
+.head 3 -  Vertical Scroll Bar:
+.head 3 -  Horizontal Scroll Bar:
+.head 3 -  Column:
+.head 3 -  Background Text:
+.head 3 -  Group Box:
+.head 3 -  Line:
+.head 3 -  Frame:
+.head 3 -  Custom Control:
+.head 3 -  ActiveX:
+.head 3 -  Date Picker:
+.head 3 -  Date Time Picker:
+.head 3 -  Tab Bar:
+.head 2 -  Application Actions
+.head 1 +  Form Window: frmTestNetHookTD
+.head 2 -  Class:
+.head 2 -  Property Template:
+.head 2 -  Class DLL Name:
+.head 2 -  Title: Test NetHookTD
+.head 2 -  Icon File:
+.head 2 -  Accessories Enabled? No
+.head 2 -  Visible? Yes
+.head 2 -  Display Settings
+.head 3 -  Display Style? Default
+.head 3 -  Visible at Design time? Yes
+.head 3 -  Automatically Created at Runtime? Yes
+.head 3 -  Initial State: Normal
+.head 3 -  Maximizable? Yes
+.head 3 -  Minimizable? Yes
+.head 3 -  Allow Child Docking? No
+.head 3 -  Docking Orientation: All
+.head 3 -  System Menu? Yes
+.head 3 -  Resizable? Yes
+.head 3 -  Window Location and Size
+.head 4 -  Left: 3.038"
+.head 4 -  Top: 1.76"
+.head 4 -  Width:  14.443"
+.head 4 -  Width Editable? Yes
+.head 4 -  Height: 4.55"
+.head 4 -  Height Editable? Yes
+.head 3 -  Form Size
+.head 4 -  Width:  Default
+.head 4 -  Height: Default
+.head 4 -  Number of Pages: Dynamic
+.head 3 -  Font Name: Default
+.head 3 -  Font Size: Default
+.head 3 -  Font Enhancement: Default
+.head 3 -  Text Color: Default
+.head 3 -  Background Color: Default
+.head 2 -  XAML Style:
+.head 2 -  Background Brush:
+.head 2 -  Ribbon Bar Enabled? No
+.head 2 -  Anchoring Enabled? No
+.head 2 -  Vertical Anchor: Top
+.head 2 -  Horizontal Anchor: Left
+.head 2 -  Minimum Width: Default
+.head 2 -  Minimum Height: Default
+.head 2 -  Anchor Maximum Width: Default
+.head 2 -  Anchor Maximum Height: Default
+.head 2 -  Description:
+.head 2 -  Ribbon
+.head 2 -  Named Menus
+.head 2 -  Menu
+.head 2 +  Tool Bar
+.head 3 -  Display Settings
+.head 4 -  Display Style? Default
+.head 4 -  Location? Top
+.head 4 -  Visible? Yes
+.head 4 -  Size: Default
+.head 4 -  Size Editable? Yes
+.head 4 -  Docking Toolbar? No
+.head 4 -  Toolbar Docking Orientation: Top | Bottom
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Resizable? No
+.head 3 -  XAML Style:
+.head 3 -  Background Brush:
+.head 3 -  Anchoring Enabled? No
+.head 3 -  Minimum Width: Default
+.head 3 -  Minimum Height: Default
+.head 3 -  Anchor Maximum Width: Default
+.head 3 -  Anchor Maximum Height: Default
+.head 3 -  Contents
+.head 2 +  Contents
+.head 3 +  Pushbutton: pbTestSalGetVersion
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Title: Test SalGetVersion
+.head 4 -  Window Location and Size
+.head 5 -  Left: 2.086"
+.head 5 -  Top: 0.563"
+.head 5 -  Width:  2.456"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.292"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Keyboard Accelerator: (none)
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Picture File Name:
+.head 4 -  Picture Transparent Color: None
+.head 4 -  Image Style: Single
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Button Appearance: Standard
+.head 4 -  ToolTip:
+.head 4 -  Image Alignment: Default
+.head 4 -  Text Alignment: Default
+.head 4 -  Text Image Relation: Default
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call Test_SalGetVersion( )
+.head 3 +  Pushbutton: pbTestSalDateCurrent
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Title: Test SalDateCurrent
+.head 4 -  Window Location and Size
+.head 5 -  Left: 2.1"
+.head 5 -  Top: 0.948"
+.head 5 -  Width:  2.456"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.292"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Keyboard Accelerator: (none)
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Picture File Name:
+.head 4 -  Picture Transparent Color: None
+.head 4 -  Image Style: Single
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Button Appearance: Standard
+.head 4 -  ToolTip:
+.head 4 -  Image Alignment: Default
+.head 4 -  Text Alignment: Default
+.head 4 -  Text Image Relation: Default
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call Test_SalDateCurrent( )
+.head 3 +  Pushbutton: pbTestSalDateToStr
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Title: Test SalDateToStr
+.head 4 -  Window Location and Size
+.head 5 -  Left: 2.086"
+.head 5 -  Top: 1.354"
+.head 5 -  Width:  2.456"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.292"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Keyboard Accelerator: (none)
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Picture File Name:
+.head 4 -  Picture Transparent Color: None
+.head 4 -  Image Style: Single
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Button Appearance: Standard
+.head 4 -  ToolTip:
+.head 4 -  Image Alignment: Default
+.head 4 -  Text Alignment: Default
+.head 4 -  Text Image Relation: Default
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call Test_SalDateToStr( )
+.head 3 +  Pushbutton: pbTestVisStrChoose
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Title: Test VisStrChoose
+.head 4 -  Window Location and Size
+.head 5 -  Left: 2.129"
+.head 5 -  Top: 1.792"
+.head 5 -  Width:  2.456"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.292"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Keyboard Accelerator: (none)
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Picture File Name:
+.head 4 -  Picture Transparent Color: None
+.head 4 -  Image Style: Single
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Button Appearance: Standard
+.head 4 -  ToolTip:
+.head 4 -  Image Alignment: Default
+.head 4 -  Text Alignment: Default
+.head 4 -  Text Image Relation: Default
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call Test_VisStrChoose( )
+.head 3 +  Pushbutton: pbTestSalNumberRound
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Title: Test SalNumberRound
+.head 4 -  Window Location and Size
+.head 5 -  Left: 2.129"
+.head 5 -  Top: 2.198"
+.head 5 -  Width:  2.456"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.292"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Keyboard Accelerator: (none)
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Picture File Name:
+.head 4 -  Picture Transparent Color: None
+.head 4 -  Image Style: Single
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Button Appearance: Standard
+.head 4 -  ToolTip:
+.head 4 -  Image Alignment: Default
+.head 4 -  Text Alignment: Default
+.head 4 -  Text Image Relation: Default
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call Test_SalNumberRound( )
+.head 3 +  Multiline Field: mlLog
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Data
+.head 5 -  Maximum Data Length: 50000
+.head 5 -  String Type: String
+.head 5 -  Editable? Yes
+.head 4 -  Display Settings
+.head 5 -  Border? Yes
+.head 5 -  Word Wrap? No
+.head 5 -  Vertical Scroll? Yes
+.head 5 -  Window Location and Size
+.head 6 -  Left: 4.729"
+.head 6 -  Top: 0.115"
+.head 6 -  Width:  9.014"
+.head 6 -  Width Editable? Yes
+.head 6 -  Height: 3.633"
+.head 6 -  Height Editable? Yes
+.head 5 -  Visible? Yes
+.head 5 -  Font Name: Default
+.head 5 -  Font Size: Default
+.head 5 -  Font Enhancement: Default
+.head 5 -  Text Color: Default
+.head 5 -  Background Color: Default
+.head 4 -  ToolTip:
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Flow Direction: Default
+.head 4 -  Spell Check? No
+.head 4 -  Hint Text:
+.head 4 -  IME Mode: Auto
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 -  Message Actions
+.head 3 +  Combo Box: cmbVariant
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Property Template:
+.head 4 -  Class DLL Name:
+.head 4 -  Window Location and Size
+.head 5 -  Left: 1.4"
+.head 5 -  Top: 0.104"
+.head 5 -  Width:  3.171"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 1.938"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Editable? No
+.head 4 -  String Type: String
+.head 4 -  Maximum Data Length: Default
+.head 4 -  Sorted? No
+.head 4 -  Always Show List? No
+.head 4 -  Vertical Scroll? Yes
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Input Mask: Unformatted
+.head 4 -  ToolTip:
+.head 4 -  AutoFill? Yes
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Flow Direction: Default
+.head 4 -  Hint Text:
+.head 4 -  IME Mode: Auto
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 4 +  List Initialization
+.head 5 -  Text: Adapt values (test mode -1)
+.head 5 -  Text: Show msgbox (variant 1 )
+.head 5 -  Text: Original call (variant 0 )
+.head 4 +  Message Actions
+.head 5 +  On SAM_Create
+.head 6 -  Call SalListSetSelect( hWndItem, 0 )
+.head 3 -  Background Text: bkgd1
+.head 4 -  Resource Id: 845
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Window Location and Size
+.head 5 -  Left: 0.057"
+.head 5 -  Top: 0.135"
+.head 5 -  Width:  1.229"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.167"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Justify: Right
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
+.head 4 -  Title: Hook variant
+.head 4 -  XAML Style:
+.head 4 -  Background Brush:
+.head 4 -  Text Brush:
+.head 4 -  Flow Direction: Default
+.head 4 -  Vertical Anchor: Top
+.head 4 -  Horizontal Anchor: Left
+.head 4 -  Minimum Width: Default
+.head 4 -  Minimum Height: Default
+.head 2 -  Background Threads:
+.head 2 +  Functions
+.head 3 +  Function: Test_SalGetVersion
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nRet1
+.head 5 -  Number: nRet2
+.head 5 -  Number: nVariant
+.head 5 -  Boolean: bIsHooked
+.head 5 -  String: sMsg
+.head 5 -  String: sDate
+.head 5 -  String: sChosen
+.head 5 -  Date/Time: dtDate
+.head 5 -  Boolean: bTestMode
+.head 5 -  Boolean: bOk
+.head 4 +  Actions
+.head 5 -  Call ClearTrace( )
+.head 5 -  !
+.head 5 -  ! Remove all hooks to be sure the test is correctly using initial state
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  !
+.head 5 -  ! First call the original non-hooked function and log the result
+.head 5 -  Set nRet1 = SalGetVersion(  )
+.head 5 -  Call Trace( "(Original) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Install the hook using given variant
+.head 5 -  Set bOk = NH_InstallHook( HOOKID_SalGetVersion, GetVariantMode( ) )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the function again which is now hooked and log the result
+.head 5 -  Set nRet1 = SalGetVersion(  )
+.head 5 -  Call Trace( "(Hooked) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Remove the hook so the function works as normal
+.head 5 -  Call NH_RemoveHook( HOOKID_SalGetVersion )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the now unhooked function and log the result
+.head 5 -  Set nRet1 = SalGetVersion(  )
+.head 5 -  Call Trace( "(Original) SalGetVersion( ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Clean up all hooks to be sure
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 3 +  Function: Test_SalDateCurrent
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nRet1
+.head 5 -  Number: nRet2
+.head 5 -  Number: nVariant
+.head 5 -  Boolean: bIsHooked
+.head 5 -  String: sMsg
+.head 5 -  String: sDate
+.head 5 -  String: sChosen
+.head 5 -  Date/Time: dtDate
+.head 5 -  Boolean: bTestMode
+.head 5 -  Boolean: bOk
+.head 4 +  Actions
+.head 5 -  Call ClearTrace( )
+.head 5 -  !
+.head 5 -  ! Remove all hooks to be sure the test is correctly using initial state
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  !
+.head 5 -  ! First call the original non-hooked function and log the result
+.head 5 -  Set dtDate = SalDateCurrent(  )
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Original) SalDateCurrent( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Install the hook using given variant
+.head 5 -  Set bOk = NH_InstallHook( HOOKID_SalDateCurrent, GetVariantMode( ) )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the function again which is now hooked and log the result
+.head 5 -  Set dtDate = SalDateCurrent(  )
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Hooked) SalDateCurrent( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Remove the hook so the function works as normal
+.head 5 -  Call NH_RemoveHook( HOOKID_SalDateCurrent )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the now unhooked function and log the result
+.head 5 -  Set dtDate = SalDateCurrent(  )
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Original) SalDateCurrent( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Clean up all hooks to be sure
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 3 +  Function: Test_SalDateToStr
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nRet1
+.head 5 -  Number: nRet2
+.head 5 -  Number: nVariant
+.head 5 -  Boolean: bIsHooked
+.head 5 -  String: sMsg
+.head 5 -  String: sDate
+.head 5 -  String: sChosen
+.head 5 -  Date/Time: dtDate
+.head 5 -  Boolean: bTestMode
+.head 5 -  Boolean: bOk
+.head 4 +  Actions
+.head 5 -  Call ClearTrace( )
+.head 5 -  !
+.head 5 -  ! Remove all hooks to be sure the test is correctly using initial state
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  !
+.head 5 -  Set dtDate = SalDateCurrent(  )
+.head 5 -  ! First call the original non-hooked function and log the result
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Original) SalDateToStr( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Install the hook using given variant
+.head 5 -  Set bOk = NH_InstallHook( HOOKID_SalDateToStr, GetVariantMode( ) )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the function again which is now hooked and log the result
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Hooked) SalDateToStr( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Remove the hook so the function works as normal
+.head 5 -  Call NH_RemoveHook( HOOKID_SalDateToStr )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the now unhooked function and log the result
+.head 5 -  Call SalDateToStr( dtDate, sDate )
+.head 5 -  Call Trace( "(Original) SalDateToStr( ) -> " || sDate )
+.head 5 -  !
+.head 5 -  ! Clean up all hooks to be sure
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 3 +  Function: Test_VisStrChoose
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nRet1
+.head 5 -  Number: nRet2
+.head 5 -  Number: nVariant
+.head 5 -  Boolean: bIsHooked
+.head 5 -  String: sMsg
+.head 5 -  String: sDate
+.head 5 -  String: sChosen
+.head 5 -  Date/Time: dtDate
+.head 5 -  Boolean: bTestMode
+.head 5 -  Boolean: bOk
+.head 4 +  Actions
+.head 5 -  Call ClearTrace( )
+.head 5 -  !
+.head 5 -  ! Remove all hooks to be sure the test is correctly using initial state
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  !
+.head 5 -  ! First call the original non-hooked function and log the result
+.head 5 -  Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+.head 5 -  Call Trace( "(Original) VisStrChoose( ) -> " || sChosen )
+.head 5 -  !
+.head 5 -  ! Install the hook using given variant
+.head 5 -  Set bOk = NH_InstallHook( HOOKID_VisStrChoose, GetVariantMode( ) )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the function again which is now hooked and log the result
+.head 5 -  Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+.head 5 -  Call Trace( "(Hooked) VisStrChoose( ) -> " || sChosen )
+.head 5 -  !
+.head 5 -  ! Remove the hook so the function works as normal
+.head 5 -  Call NH_RemoveHook( HOOKID_VisStrChoose )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the now unhooked function and log the result
+.head 5 -  Set sChosen = VisStrChoose( TRUE, "Original TRUE string", "Original FALSE string" )
+.head 5 -  Call Trace( "(Original) VisStrChoose( ) -> " || sChosen )
+.head 5 -  !
+.head 5 -  ! Clean up all hooks to be sure
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 3 +  Function: Test_SalNumberRound
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nRet1
+.head 5 -  Number: nRet2
+.head 5 -  Number: nToRound
+.head 5 -  Boolean: bIsHooked
+.head 5 -  String: sMsg
+.head 5 -  String: sDate
+.head 5 -  String: sChosen
+.head 5 -  Date/Time: dtDate
+.head 5 -  Boolean: bTestMode
+.head 5 -  Boolean: bOk
+.head 4 +  Actions
+.head 5 -  Call ClearTrace( )
+.head 5 -  !
+.head 5 -  ! Remove all hooks to be sure the test is correctly using initial state
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  !
+.head 5 -  Set nToRound = 9.56
+.head 5 -  ! First call the original non-hooked function and log the result
+.head 5 -  Set nRet1 = SalNumberRound( nToRound )
+.head 5 -  Call Trace( "(Original) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Install the hook using given variant
+.head 5 -  Set bOk = NH_InstallHook( HOOKID_SalNumberRound, GetVariantMode( ) )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the function again which is now hooked and log the result
+.head 5 -  Set nRet1 = SalNumberRound( nToRound )
+.head 5 -  Call Trace( "(Hooked) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Remove the hook so the function works as normal
+.head 5 -  Call NH_RemoveHook( HOOKID_SalNumberRound )
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 5 -  !
+.head 5 -  ! Call the now unhooked function and log the result
+.head 5 -  Set nRet1 = SalNumberRound( nToRound )
+.head 5 -  Call Trace( "(Original) SalNumberRound( " || SalNumberToStrX( nToRound, 2 )  || " ) -> " || SalNumberToStrX( nRet1, 0 ) )
+.head 5 -  !
+.head 5 -  ! Clean up all hooks to be sure
+.head 5 -  Call NH_RemoveAllHooks()
+.head 5 -  Call Trace( NH_GetLastMsg( ) )
+.head 3 +  Function: Trace
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 +  Parameters
+.head 5 -  String: psTraceMsg
+.head 4 -  Static Variables
+.head 4 -  Local variables
+.head 4 +  Actions
+.head 5 -  Set mlLog = mlLog || psTraceMsg || "
+"
+.head 3 +  Function: GetVariantMode
+.head 4 -  Description:
+.head 4 +  Returns
+.head 5 -  Number:
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 +  Local variables
+.head 5 -  Number: nIndex
+.head 4 +  Actions
+.head 5 -  Set nIndex = SalListQuerySelection( cmbVariant )
+.head 5 +  If nIndex = 0
+.head 6 -  Return -1
+.head 5 +  Else If nIndex = 1
+.head 6 -  Return 1
+.head 5 +  Else If nIndex = 2
+.head 6 -  Return 0
+.head 5 +  Else
+.head 6 -  Return 0
+.head 3 +  Function: ClearTrace
+.head 4 -  Description:
+.head 4 -  Returns
+.head 4 -  Parameters
+.head 4 -  Static Variables
+.head 4 -  Local variables
+.head 4 +  Actions
+.head 5 -  Set mlLog = STRING_Null
+.head 2 -  Window Parameters
+.head 2 -  Window Variables
+.head 2 -  Message Actions

@@ -1,0 +1,2 @@
+copy ..\build\*.* .
+pause
