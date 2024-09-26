@@ -26,22 +26,23 @@ namespace NetHookTDTest
             var newValue = oldValue + ";" + TDInstallation;
             Environment.SetEnvironmentVariable(name, newValue);
 
-            Console.WriteLine($"***************** NetHookTD settings *****************\n");
-            Console.WriteLine($"TD Version: {TDVersion}");
-            Console.WriteLine($"IDE/Runtime location: {TDInstallation}\n");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Change the constants for TD version and location to use a different TD version (v5.1 and up)\n");
+            LogToConsole($"***************** NetHookTD settings *****************\n");
+            LogToConsole($"TD Version: {TDVersion}");
+            LogToConsole($"IDE/Runtime location: {TDInstallation}\n");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            LogToConsole($"Change the constants for TD version and location to use a different TD version (v2.0 and up)\n");
             Console.ForegroundColor = ConsoleColor.White;
 
             if (!File.Exists(TDInstallation + cdlli_dll))
             {
-                Console.WriteLine("\nTD runtime file not found : " + TDInstallation + cdlli_dll);
-                Console.WriteLine($"\nPress enter to abort");
+                LogToConsole("\nTD runtime file not found : " + TDInstallation + cdlli_dll);
+                LogToConsole($"\nPress enter to abort");
                 Console.ReadLine();
                 Environment.Exit(1);
             }
 
-            Console.WriteLine($"Press enter to start the tests");
+            
+            LogToConsole($"Press enter to start the tests");
             Console.ReadLine();
 
             // Force loading TD runtime dll. This simulates running the test within the needed TD version
@@ -52,7 +53,7 @@ namespace NetHookTDTest
 
             if (true)   // TEST HOOKS
             {
-                Console.WriteLine($"================ Running hooking tests =======================\n");
+                LogToConsole($"================ Running hooking tests =======================\n");
 
                 Test_SalGetVersion();
                 Test_SalDateCurrent();
@@ -60,14 +61,14 @@ namespace NetHookTDTest
                 Test_VisStrChoose();
                 Test_SalNumberRound();
 
-                Console.WriteLine($"\n================ Hooking tests done =======================\n");
+                LogToConsole($"\n================ Hooking tests done =======================\n");
 
             }
 
             if (true)  // These are manual misc tests
             {
-                Console.WriteLine($"\n================ Running misc tests =======================\n");
-                // Must init sal api first
+                LogToConsole($"\n================ Running misc tests =======================\n");
+                // Must init sal api first. Only availabe starting from TD 4.0
                 SalApiInit();
 
                 // Display which TD version was automatically detected
@@ -86,24 +87,19 @@ namespace NetHookTDTest
                 DATETIME dateConstruct = SalDateConstruct(2023, 11, 26, 13, 10, 59);
                 LogToConsole($"SalDateConstruct() -> {NetHookTDClient.DATETIMEToString(dateConstruct)}");
 
-                UIntPtr errorTextPtr = SqlGetErrorTextX(1);
+                UIntPtr errorTextPtr = SqlGetErrorTextX( 1 );
                 string ErrText = NetHookTDClient.HStringToString(errorTextPtr);
-                LogToConsole($"SqlGetErrorTextX(1) -> {ErrText}");
+                LogToConsole($"SqlGetErrorTextX( 1 ) -> {ErrText}");
 
                 // Call function and receive a LPHSTRING
                 UIntPtr dateTextPtr = new UIntPtr(0);
-                
                 int nret = SalDateToStr(dateCurrent, ref dateTextPtr);
-
-                // Convert LPWSTR to .NET String.
+                // Convert HSTRING to .NET String.
                 string dateText = NetHookTDClient.HStringToString(dateTextPtr);
                 LogToConsole(@"SalDateToStr() -> " + dateText);
 
-
                 // Try create a new HSTRING to be used in passing strings????
                 string myText = "This is a text";
-
-                //string managedString = Marshal.PtrToStringUni(buffer);
                 UIntPtr newHStringPtr = new UIntPtr(0);
 
                 if (NetHookTDClient.StringToHString(myText, ref newHStringPtr))
@@ -115,7 +111,6 @@ namespace NetHookTDTest
 
                 UIntPtr newHStringTruePtr = new UIntPtr(0);
                 UIntPtr newHStringFalsePtr = new UIntPtr(0);
-
                 NetHookTDClient.StringToHString("True text is used", ref newHStringTruePtr);
                 NetHookTDClient.StringToHString("False text is used", ref newHStringFalsePtr);
 
@@ -132,10 +127,10 @@ namespace NetHookTDTest
 
                 LogToConsole($"SalNumberRound({myvalue}) -> {rounded}");
 
-                Console.WriteLine($"\n================ Running misc tests done =======================\n");
+                LogToConsole($"\n================ Running misc tests done =======================\n");
             }
 
-            Console.WriteLine($"Press enter");
+            LogToConsole($"Press enter to stop this test application");
             Console.ReadLine();
         }
 
@@ -146,9 +141,9 @@ namespace NetHookTDTest
 
             int hookId = (int)Hooks.SalGetVersion;
 
-            NetHookTDClient.SetTestMode(true);
-
-            LogToConsole($"SetTestMode({NetHookTDClient.GetTestMode()})");
+            bool TestMode = true;
+            NetHookTDClient.SetTestMode(TestMode);
+            LogToConsole("SetTestMode", TestMode, "");
 
             // First call the "original" function
             ushort version1 = SalGetVersion();
@@ -189,9 +184,9 @@ namespace NetHookTDTest
 
             int hookId = (int)Hooks.SalDateCurrent;
 
-            //NetHookTDClient hookClient = new NetHookTDClient();
-            NetHookTDClient.SetTestMode(true);
-            LogToConsole($"SetTestMode({NetHookTDClient.GetTestMode()})");
+            bool TestMode = true;
+            NetHookTDClient.SetTestMode(TestMode);
+            LogToConsole("SetTestMode", TestMode, "");
 
             // First call the "original" function
             DATETIME date1 = SalDateCurrent();
@@ -232,26 +227,41 @@ namespace NetHookTDTest
 
             int hookId = (int)Hooks.SalDateToStr;
 
-            UIntPtr dateTextPtr;
-            int len;
-            string dateText;
-
-            //NetHookTDClient hookClient = new NetHookTDClient();
-            NetHookTDClient.SetTestMode(true);
-            LogToConsole($"SetTestMode({NetHookTDClient.GetTestMode()})");
+            bool TestMode = true;
+            NetHookTDClient.SetTestMode(TestMode);
+            LogToConsole("SetTestMode", TestMode, "");
 
             // First call the "original" function
-            // Call function and receive a LPHSTRING
-            dateTextPtr = new UIntPtr(0);
-            len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
-            dateText = NetHookTDClient.HStringToString(dateTextPtr);
+            UIntPtr dateTextPtr = new UIntPtr(0);   // Create a new pointer (for HSTRING)
+            int len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
+            string dateText = NetHookTDClient.HStringToString(dateTextPtr); // Copy the HSTRING data to a native string
             LogToConsole($"(Original) SalDateToStr -> {dateText}");
 
             // Install the hook
             bool error = NetHookTDClient.InstallHook(hookId, 0);
             LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
 
-            // Call function and receive a LPHSTRING
+            // Call the hooked function
+            dateTextPtr = new UIntPtr(0);
+            len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
+            dateText = NetHookTDClient.HStringToString(dateTextPtr);
+            LogToConsole($"(Hooked) SalDateToStr -> {dateText}");
+
+            //Remove the hook
+            error = NetHookTDClient.RemoveHook(hookId);
+            LogToConsole("RemoveHook", error, NetHookTDClient.GetLastMsg());
+
+            // Call the "original" function
+            dateTextPtr = new UIntPtr(0);
+            len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
+            dateText = NetHookTDClient.HStringToString(dateTextPtr);
+            LogToConsole($"(Original) SalDateToStr -> {dateText}");
+
+            // Install the hook again, see if that works
+            error = NetHookTDClient.InstallHook(hookId, 0);
+            LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
+
+            // Call the hooked function
             dateTextPtr = new UIntPtr(0);
             len = SalDateToStr(SalDateCurrent(), ref dateTextPtr);
             dateText = NetHookTDClient.HStringToString(dateTextPtr);
@@ -268,8 +278,9 @@ namespace NetHookTDTest
 
             int hookId = (int)Hooks.VisStrChoose;
 
-            NetHookTDClient.SetTestMode(true);
-            LogToConsole($"SetTestMode({NetHookTDClient.GetTestMode()})");
+            bool TestMode = true;
+            NetHookTDClient.SetTestMode(TestMode);
+            LogToConsole("SetTestMode", TestMode, "");
 
             // First call the "original" function
             UIntPtr newHStringTruePtr = new UIntPtr(0);
@@ -284,6 +295,23 @@ namespace NetHookTDTest
             bool error = NetHookTDClient.InstallHook(hookId, 0);
             LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
 
+            // Call the hooked function
+            sChosen = NetHookTDClient.HStringToString(VisStrChoose(true, newHStringTruePtr, newHStringFalsePtr));
+            LogToConsole($"(Hooked) VisStrChoose -> {sChosen}");
+
+            //Remove the hook
+            error = NetHookTDClient.RemoveHook(hookId);
+            LogToConsole("RemoveHook", error, NetHookTDClient.GetLastMsg());
+
+            // Call the "original" function
+            sChosen = NetHookTDClient.HStringToString(VisStrChoose(false, newHStringTruePtr, newHStringFalsePtr));
+            LogToConsole($"(Original) VisStrChoose -> {sChosen}");
+
+            // Install the hook
+            error = NetHookTDClient.InstallHook(hookId, 0);
+            LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
+
+            // Call the hooked function
             sChosen = NetHookTDClient.HStringToString(VisStrChoose(true, newHStringTruePtr, newHStringFalsePtr));
             LogToConsole($"(Hooked) VisStrChoose -> {sChosen}");
 
@@ -298,8 +326,9 @@ namespace NetHookTDTest
 
             int hookId = (int)Hooks.SalNumberRound;
 
-            NetHookTDClient.SetTestMode(true);
-            LogToConsole($"SetTestMode({NetHookTDClient.GetTestMode()})");
+            bool TestMode = true;
+            NetHookTDClient.SetTestMode(TestMode);
+            LogToConsole("SetTestMode", TestMode, "");
 
             // First call the "original" function
             NUMBER numberVal = new NUMBER();
@@ -314,9 +343,7 @@ namespace NetHookTDTest
             bool error = NetHookTDClient.InstallHook(hookId, 0);
             LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
 
-            numberVal = new NUMBER();
-            myvalue = 123.55;
-            ok = SWinCvtDoubleToNumber(myvalue, ref numberVal);
+            // Call the hooked function
             rounded = SalNumberRound(numberVal);
             roundedDouble = new double();
             ok = SWinCvtNumberToDouble(ref rounded, ref roundedDouble);
@@ -327,9 +354,6 @@ namespace NetHookTDTest
             LogToConsole("RemoveHook", error, NetHookTDClient.GetLastMsg());
 
             // Call the "original" function
-            numberVal = new NUMBER();
-            myvalue = 123.55;
-            ok = SWinCvtDoubleToNumber(myvalue, ref numberVal);
             rounded = SalNumberRound(numberVal);
             roundedDouble = new double();
             ok = SWinCvtNumberToDouble(ref rounded, ref roundedDouble);
@@ -340,9 +364,6 @@ namespace NetHookTDTest
             LogToConsole("InstallHook", error, NetHookTDClient.GetLastMsg());
 
             // Call the hooked function
-            numberVal = new NUMBER();
-            myvalue = 123.55;
-            ok = SWinCvtDoubleToNumber(myvalue, ref numberVal);
             rounded = SalNumberRound(numberVal);
             roundedDouble = new double();
             ok = SWinCvtNumberToDouble(ref rounded, ref roundedDouble);
@@ -355,7 +376,9 @@ namespace NetHookTDTest
 
         private static void LogToConsole(string method, bool error, string msg)
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine($"{method}\t{error}\t{msg}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private static void LogToConsole(string msg)
@@ -363,6 +386,7 @@ namespace NetHookTDTest
             Console.WriteLine($"{msg}");
         }
 
+        // This exported function is available from TD 4.0 and up
         [DllImport(cdlli_dll, CallingConvention = CallingConvention.StdCall)]
         public static extern int SalApiInit();
 

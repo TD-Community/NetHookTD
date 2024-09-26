@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NetHookTD")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("C# hooking into TD runtime")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RablinQ ICT")]
 [assembly: AssemblyProduct("NetHookTD")]
