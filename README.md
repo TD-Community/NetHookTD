@@ -21,6 +21,7 @@ With this framework, you can:
 - **Control execution flow** by modifying the behavior of TD runtime functions at runtime.
 
 ### Key Features:
+- **.NET**: Implement alternative functions in c# instead of c++.
 - **Easy API**: Provides intuitive methods to set up and manage hooks.
 - **Compatibility**: TD versions starting from TD 2.0 and up 
 - **Safe and Flexible**: Hooks can be installed and removed dynamically, without the need to alter the original TD runtime.
