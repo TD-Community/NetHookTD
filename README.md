@@ -81,8 +81,10 @@ Run the test application and check the output if the solution is working correct
 
 First declare the the DllImport for the TD function in the test application. In this example **SalGetVersion** is used:
 
-    [DllImport(cdlli_dll, CallingConvention = CallingConvention.StdCall)]
-    public static extern ushort SalGetVersion();
+```csharp
+[DllImport(cdlli_dll, CallingConvention = CallingConvention.StdCall)]
+public static extern ushort SalGetVersion();
+```
 
 You can find info on return value type and parameter types in centura.h file within the inc folder of your TD installation. Make sure you use the correct types for p-invoke.
 You can find the list of types here:
@@ -92,8 +94,10 @@ https://learn.microsoft.com/en-us/dotnet/framework/interop/marshalling-data-with
 Then for initial testing call the function.
 Place this in the section for manual misc tests within the Main() method.
 
-    ushort version = SalGetVersion();
-    LogToConsole($"SalGetVersion() -> {version}");
+```csharp
+ushort version = SalGetVersion();
+LogToConsole($"SalGetVersion() -> {version}");
+```
 
 Run the test and be sure the function works as expected.
 
@@ -119,20 +123,24 @@ Add the file to the NetHookTD project under folder HookFunctions.
 Edit the file and change the existing code accoring to the TD function signature.
 Here as example for SalGetVersion we need one delegate and one variable to hold the function pointer:
 
-            //Define delegate for exported function
-            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
-            private delegate ushort SalGetVersionDelegate();
-    
-            // Create function pointer to delegate
-            private static SalGetVersionDelegate SalGetVersion;
+```csharp
+//Define delegate for exported function
+[UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+private delegate ushort SalGetVersionDelegate();
+
+// Create function pointer to delegate
+private static SalGetVersionDelegate SalGetVersion;
+```
 
 Now it is time to implement the alternative method which will replace the behavior of the original one.
 
-    // Define alternative function hook for original function
-    private static ushort SalGetVersionHook()
-    {
-    	return SalGetVersion( );
-    }
+```csharp
+// Define alternative function hook for original function
+private static ushort SalGetVersionHook()
+{
+	return SalGetVersion( );
+}
+```
 
 Above implementation shows that the alternative hook function will call the original **SalGetVersion** function and returns the value.
 
@@ -142,25 +150,78 @@ But we want to change the behavior. Just as an example we want to have a message
 
 Implementation would be:
 
-    // Define alternative function hook for original function
-    private static ushort SalGetVersionHook()
-    {
-    	// Show messagebox and use the original function
-    	string myfunction = (Hooks.SalGetVersion).ToString();
-    	MessageBox.Show($"{myfunction} hook called", $"NetHookTD", MessageBoxButtons.OK);
-    	return SalGetVersion();
-    }
+```csharp
+// Define alternative function hook for original function
+private static ushort SalGetVersionHook()
+{
+	// Show messagebox and use the original function
+	string myfunction = (Hooks.SalGetVersion).ToString();
+	MessageBox.Show($"{myfunction} hook called", $"NetHookTD", MessageBoxButtons.OK);
+	return SalGetVersion();
+}
+```
 
 On each call of SalGetVersion a messagebox is shown and returns the original value.
 
 To change the actual value which is returned:
 
-    // Define alternative function hook for original function
-    private static ushort SalGetVersionHook()
-    {
-    	ushort number = 80;
-    	return number;
-    }
+```csharp
+// Define alternative function hook for original function
+private static ushort SalGetVersionHook()
+{
+	ushort number = 80;
+	return number;
+}
+```
 
 When SalGetVersion is called it always returns 80.
+
+As can be seen, multiple implementations can be used to alter the original function.
+You might want to have all of them available and choose depending on your need between those implementations at runtime.
+
+This can be done using the principle of **variants**
+
+You can hook the same function and enable a particular variant at runtime and have all those alternative behaviors just by switching variant:
+
+```csharp
+// Define alternative function hook for original function
+private static ushort SalGetVersionHook()
+{
+	// Get info on the specific installed hook from the list of registered hooks
+	InstalledHook installedhook = InstalledHooks[(int)Hooks.SalGetVersion];
+	// Get the hook variant which is registered
+	int variant = installedhook.GetVariant();
+
+	switch (variant)
+	{
+		case -1:    // TestMode
+			// TestMode always returns a fixed value
+			ushort number = 80;
+			return number;
+		case 1:
+			// Show messagebox and use the original function
+			string myfunction = (Hooks.SalGetVersion).ToString();
+			MessageBox.Show($"{myfunction} hook called", $"NetHookTD", MessageBoxButtons.OK);
+			return SalGetVersion();
+		default:
+			// In all other cases, use the original function
+			return SalGetVersion();
+	}
+}
+```
+
+See examples for the existing hooked functions in the project to change return values and parameters.
+
+The only thing to implement is the actual hooking of the function.
+
+This is done by adding the creation of the hook in the **InstallHook** method within **NetHookTD_Client.cs**
+
+```csharp
+case Hooks.SalGetVersion:
+    mydll = cdlli_dll;  // THe dll where the function resides
+    if (SalGetVersion==null)
+        SalGetVersion = GetFunctionDelegate<SalGetVersionDelegate>(mydll, myfunction);
+    mydelegate = new SalGetVersionDelegate(SalGetVersionHook);
+    break;
+```
 
