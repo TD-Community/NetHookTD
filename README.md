@@ -30,7 +30,7 @@ With this framework, you can:
 - **Extensible**: Add your own function hooks easily. 
 - **Sal Api integration**: Gives some examples how to call TD functions from within c#
 
-### Example Use Case:
+### Example Use Case (1):
 Suppose the TD developer wants to set a specific Date/Time to be used within the TD application. This could be part of testing specific functionality.
 
 The TD function
@@ -49,3 +49,12 @@ By hooking SalDateCurrent function, when the TD application calls it, an alterna
 The alternative function will replace the original logic and will returm the needed date.
 
 The TD application in turn will get the altered date as if this was the original value and will use it as given. This is completely transparent. The TD application does not "know" the value is not the original current date.
+
+### Example Use Case (2):
+Suppose the TD developer wants to have extra logging when using particular TD functions.
+Suppose a Sal function is called with parameters. At runtime, the parameter values should be logged into a file for debugging purposes.
+
+By hooking into that function, the parameters can be read and logged into the file
+The original hooked Sal function is called and returns the original value back to the calling application.
+
+No change how the original function works but it has now the extra ability to log the passed parameter values for a more detailed debuging experience.
