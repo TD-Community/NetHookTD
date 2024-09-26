@@ -1,8 +1,8 @@
-# TD Runtime Hooking Framework
+# TD Runtime Hooking c# Framework
 
 ## What is Hooking?
 
-**Hooking** is a technique used in software development to intercept and modify the behavior of a function or event within a system at runtime. By using hooks, developers can inject custom code or logic into existing TD runtime behavior without modifying the original source code. This is particularly useful for:
+**Hooking** is a technique used in software development to intercept and modify the behavior of a function within an application at runtime. By using hooks, developers can inject custom code or logic into existing runtime behavior without modifying the original source code. This is particularly useful for:
 
 - **Monitoring and logging**: Observing function calls and their data.
 - **Altering behavior**: Modifying how certain functions operate by replacing them with custom implementations.
@@ -16,7 +16,7 @@ This framework allows developers to **hook into the TD runtime**. It provides a 
 
 With this framework, you can:
 
-- **Intercept function calls** within the TD runtime.
+- **Intercept function calls** within the TD runtime (eg Sal and Vis functions)
 - **Inject custom logic** that runs alongside or instead of the existing code.
 - **Control execution flow** by modifying the behavior of TD runtime functions at runtime.
 
@@ -86,7 +86,7 @@ First declare the the DllImport for the TD function in the test application. In 
 public static extern ushort SalGetVersion();
 ```
 
-You can find info on return value type and parameter types in centura.h file within the inc folder of your TD installation. Make sure you use the correct types for p-invoke.
+You can find info on return value type and parameter types in **centura.h** file within the **inc** folder of your TD installation. Make sure you use the correct types for p-invoke.
 You can find the list of types here:
 
 https://learn.microsoft.com/en-us/dotnet/framework/interop/marshalling-data-with-platform-invoke
@@ -107,13 +107,15 @@ Now you can add the hook for this function within the NetHookTD project.
 
 First add the TD function name to the list of hooked functions. Each hooked function has its own hook ID. The Hook enum can be found in *NetHookTD_Client.cs*
 
-        public enum Hooks
-        {
-            SalGetVersion = 1,
-            SalDateCurrent = 2,
-            SalDateToStr = 3,
-            etc etc
-        }
+```csharp
+public enum Hooks
+{
+	SalGetVersion = 1,
+	SalDateCurrent = 2,
+	SalDateToStr = 3,
+	etc etc
+}
+```
 
 Create a new .cs file within the folder **HookFunctions**
 Copy paste an existing file to be sure all needed code is present. Rename the file to the name of the TD function for clearity. In this example the file would be **SalGetVersion.cs**
@@ -142,7 +144,7 @@ private static ushort SalGetVersionHook()
 }
 ```
 
-Above implementation shows that the alternative hook function will call the original **SalGetVersion** function and returns the value.
+Above implementation shows that the alternative hook function will call the original **SalGetVersion** function and returns the original intended value.
 
 In this case, when SalGetVersion is hooked at runtime, no change is done to the behavior of the original function. It acts the same as normal.
 
@@ -224,4 +226,70 @@ case Hooks.SalGetVersion:
     mydelegate = new SalGetVersionDelegate(SalGetVersionHook);
     break;
 ```
+
+You have to determine first in which dll the TD function resides.
+As example shows you set the function pointer and the hook delegate for the TD function.
+
+At this point all is implemented and ready to be used in a TD application.
+Build the project.
+
+### Deployment:
+TD applications can now use the NetHookTD assembly.
+For this to work you need to deploy the following dlls in the same folder as your TD application:
+
+- NetHookTD.dll
+- EasyHook.dll
+- EasyHook32.dll
+- EasyLoad32.dll
+
+
+### Implement TD code for function hooking:
+The TD sample application provided already implements the Exported Function definitions to be used for hooking. Just copy/paste the complete section in your own project
+
+An excerpt from these definitions for just the InstallHook and RemoveHook:
+
+    External Functions
+    	Library name: NetHookTD.dll
+    		Function: NH_InstallHook
+    			Export Ordinal: 0
+    			Returns
+    				Boolean: BOOL
+    			Parameters
+    				Number: INT
+    				Number: INT
+    		Function: NH_RemoveHook
+    			Export Ordinal: 0
+    			Returns
+    				Boolean: BOOL
+    			Parameters
+    				Number: INT
+
+Now you are ready to hook the TD function.
+
+Here an example where the original **SalGetVersion** is first called.
+Running the application using TD 7.5 we get 75 as return value.
+
+Then the function is hooked and called again.
+Variant -1 is used, so it returns a fixed value 80.
+Lastly the hook is removed and the function is called which returns 75 again.
+
+    ! First call the original non-hooked function
+    Set nRet = SalGetVersion(  )
+    ! Result is 75 when using TD 7.5
+    
+    ! Install the hook using given variant
+    Set bOk = NH_InstallHook( HOOKID_SalGetVersion, -1 )
+    
+    ! Call the function again
+    Set nRet = SalGetVersion(  )
+    ! Result is always 80 as implemented 
+    
+    ! Remove the hook so the function works as normal
+    Call NH_RemoveHook( HOOKID_SalGetVersion )
+    
+    ! Call the now unhooked function again
+    Set nRet = SalGetVersion(  )
+    ! Result is 75 when using TD 7.5
+
+When using variant 1 above, as implemented in the example, will show a messagebox when the hooked function is called.
 
