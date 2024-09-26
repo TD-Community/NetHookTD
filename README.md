@@ -293,3 +293,34 @@ Lastly the hook is removed and the function is called which returns 75 again.
 
 When using variant 1 above, as implemented in the example, will show a messagebox when the hooked function is called.
 
+## Provided TD sample
+NetHookTD provides two TD  applications to be used to test NetHookTD and are located in the subfolder **TDSample**.
+
+- **TDSample_TD21.apt** : to be used for ANSI TD versions TD 2.1 up to TD 4.2
+- **TDSample_UNICODE.apt** : to be used for UNICODE TD versions TD 5.1 and up (32 bit only)
+
+Make sure you copy the needed deploy dlls into that folder before opening the TD samples.
+After you have build the NetHookTD solution you can use the following batch file to do this for you:
+
+- **CopyBuild.bat**
+
+(make sure the TD sample is not opened in TD IDE or is running, The dlls may be loaded and in  use)
+
+Open the sample in TD IDE and run.
+
+NetHookTD has implemented 4 example hooks and  each has 3 variants.
+Just press the corresponding buttons on the form to execute implemented tests.
+
+Enhance the sample when you implemented your own hooks accordingly.
+
+
+## TD Community Forum
+Join the TD Community Forum for everything related to Gupta Team Developer for related questions, answers and info. Also for this NetHookTD project
+
+https://forum.tdcommunity.net
+
+If you like this project and want to enhance/improve it please do so.
+Any help is appreciated. Changes to this project can be done by pull requests.
+Like to be an official contributor, contact me to be added as contributor of this project.
+
+Find me as Dave Rabelink on the forum mentioned above.
