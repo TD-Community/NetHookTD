@@ -58,3 +58,109 @@ By hooking into that function, the parameters can be read and logged into the fi
 The original hooked Sal function is called and returns the original value back to the calling application.
 
 No change how the original function works but it has now the extra ability to log the passed parameter values for a more detailed debuging experience.
+
+## Usage
+
+### NetHookTD c# solution:
+The solution consists of two projects:
+- **NetHookTD** : The actual NetHookTD assembly source code
+- **NetHookTDTest** : Console test application for testing NetHook functionality
+
+NetHookTD requires two NuGet packages which will be downloaded using the NuGet package Manager within Visual Studio 2022:
+
+- EasyHook
+- DllExport
+
+The NetHookTest project is best to be used when implementing your own hooks.
+Follow the same principle given by the examples.
+
+Make sure the original solution compiles and builds.
+Run the test application and check the output if the solution is working correctly on your system.
+
+### Implement TD function call from c#:
+
+First declare the the DllImport for the TD function in the test application. In this example **SalGetVersion** is used:
+
+    [DllImport(cdlli_dll, CallingConvention = CallingConvention.StdCall)]
+    public static extern ushort SalGetVersion();
+
+You can find info on return value type and parameter types in centura.h file within the inc folder of your TD installation. Make sure you use the correct types for p-invoke.
+You can find the list of types here:
+
+https://learn.microsoft.com/en-us/dotnet/framework/interop/marshalling-data-with-platform-invoke
+
+Then for initial testing call the function.
+Place this in the section for manual misc tests within the Main() method.
+
+    ushort version = SalGetVersion();
+    LogToConsole($"SalGetVersion() -> {version}");
+
+Run the test and be sure the function works as expected.
+
+Now you can add the hook for this function within the NetHookTD project.
+
+### Implement TD function hook:
+
+First add the TD function name to the list of hooked functions. Each hooked function has its own hook ID. The Hook enum can be found in *NetHookTD_Client.cs*
+
+        public enum Hooks
+        {
+            SalGetVersion = 1,
+            SalDateCurrent = 2,
+            SalDateToStr = 3,
+            etc etc
+        }
+
+Create a new .cs file within the folder **HookFunctions**
+Copy paste an existing file to be sure all needed code is present. Rename the file to the name of the TD function for clearity. In this example the file would be **SalGetVersion.cs**
+
+Add the file to the NetHookTD project under folder HookFunctions.
+
+Edit the file and change the existing code accoring to the TD function signature.
+Here as example for SalGetVersion we need one delegate and one variable to hold the function pointer:
+
+            //Define delegate for exported function
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            private delegate ushort SalGetVersionDelegate();
+    
+            // Create function pointer to delegate
+            private static SalGetVersionDelegate SalGetVersion;
+
+Now it is time to implement the alternative method which will replace the behavior of the original one.
+
+    // Define alternative function hook for original function
+    private static ushort SalGetVersionHook()
+    {
+    	return SalGetVersion( );
+    }
+
+Above implementation shows that the alternative hook function will call the original **SalGetVersion** function and returns the value.
+
+In this case, when SalGetVersion is hooked at runtime, no change is done to the behavior of the original function. It acts the same as normal.
+
+But we want to change the behavior. Just as an example we want to have a messagebox shown when the TD application calls SalGetVersion and return the original value.
+
+Implementation would be:
+
+    // Define alternative function hook for original function
+    private static ushort SalGetVersionHook()
+    {
+    	// Show messagebox and use the original function
+    	string myfunction = (Hooks.SalGetVersion).ToString();
+    	MessageBox.Show($"{myfunction} hook called", $"NetHookTD", MessageBoxButtons.OK);
+    	return SalGetVersion();
+    }
+
+On each call of SalGetVersion a messagebox is shown and returns the original value.
+
+To change the actual value which is returned:
+
+    // Define alternative function hook for original function
+    private static ushort SalGetVersionHook()
+    {
+    	ushort number = 80;
+    	return number;
+    }
+
+When SalGetVersion is called it always returns 80.
+
