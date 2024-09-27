@@ -4,40 +4,40 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{891D7B5D-E145-4CCE-98D9-DAFFAB2EFA15}</ProjectGuid>
+    <ProjectGuid>{82E97DF3-6072-4597-B49A-08A20DF03339}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NetHookTD</RootNamespace>
     <AssemblyName>NetHookTD</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\build\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DebugType>full</DebugType>
-    <LangVersion>7.3</LangVersion>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>..\build\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <DllExportIdent>E6FDD2D4-5E40-41F4-881A-6268836D5F2A</DllExportIdent>
+    <DllExportIdent>3818BF0C-C452-4518-BDB5-74FD78561660</DllExportIdent>
     <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
     <DllExportNamespace>NetHookTD</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
     <PlatformTarget>x86</PlatformTarget>
-    <DllExportPlatform>x86</DllExportPlatform>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
     <DllExportOurILAsm>false</DllExportOurILAsm>
@@ -65,27 +65,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HookFunctions\SalDateToStr.cs" />
-    <Compile Include="HookFunctions\SalNumberRound.cs" />
-    <Compile Include="NetHookTD_GeneralApi.cs" />
     <Compile Include="HookFunctions\SalDateCurrent.cs" />
+    <Compile Include="HookFunctions\SalDateToStr.cs" />
+    <Compile Include="HookFunctions\SalGetVersion.cs" />
+    <Compile Include="HookFunctions\SalNumberRound.cs" />
     <Compile Include="HookFunctions\VisStrChoose.cs" />
     <Compile Include="NetHookTD_Client.cs" />
+    <Compile Include="NetHookTD_GeneralApi.cs" />
     <Compile Include="NetHookTD_Hooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HookFunctions\SalGetVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EasyHook32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EasyLoad32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="EasyHook32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EasyLoad32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.4\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />

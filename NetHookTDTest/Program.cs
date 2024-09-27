@@ -8,12 +8,12 @@ namespace NetHookTDTest
      internal class Program
     {
         // For testing, first set the needed TD version
-        public const string TDVersion = "75";
+        public const string TDVersion = "74";
         public const string cdlli_dll = "cdlli" + TDVersion + ".dll";
         public const string vti_dll = "vti" + TDVersion + ".dll";
 
         // Make sure to set the folder location of the needed TD runtime/IDE installation
-        public const string TDInstallation = @"C:\Program Files (x86)\Gupta\Team Developer 7.5\";
+        public const string TDInstallation = @"C:\Program Files (x86)\Gupta\Team Developer 7.4\";
 
         static void Main(string[] args)
         {
