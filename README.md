@@ -46,7 +46,7 @@ Using NetHookTD, the behavior of this function can be altered. Assume the TD dev
 
 By hooking SalDateCurrent function, when the TD application calls it, an alternative function will be called instead. This alternate function is defined and coded within the NetHookTD assembly.
 
-The alternative function will replace the original logic and will returm the needed date.
+The alternative function will replace the original logic and will return the needed date.
 
 The TD application in turn will get the altered date as if this was the original value and will use it as given. This is completely transparent. The TD application does not "know" the value is not the original current date.
 
