@@ -71,7 +71,7 @@ NetHookTD requires two NuGet packages which will be downloaded using the NuGet p
 - EasyHook
 - DllExport
 
-The NetHookTest project is best to be used when implementing your own hooks.
+The NetHookTest project is best to be used when implementing your own hooks. Start there to get the original functions working from c#.
 Follow the same principle given by the examples.
 
 Make sure the original solution compiles and builds.
@@ -86,7 +86,8 @@ First declare the the DllImport for the TD function in the test application. In 
 public static extern ushort SalGetVersion();
 ```
 
-You can find info on return value type and parameter types in **centura.h** file within the **inc** folder of your TD installation. Make sure you use the correct types for p-invoke.
+You can find info on return value type and parameter types in **centura.h** file within the **inc** folder of your TD installation.
+Make sure you use the correct types for p-invoke.
 You can find the list of types here:
 
 https://learn.microsoft.com/en-us/dotnet/framework/interop/marshalling-data-with-platform-invoke
@@ -146,7 +147,7 @@ private static ushort SalGetVersionHook()
 
 Above implementation shows that the alternative hook function will call the original **SalGetVersion** function and returns the original intended value.
 
-In this case, when SalGetVersion is hooked at runtime, no change is done to the behavior of the original function. It acts the same as normal.
+In this case, when SalGetVersion is hooked at runtime, no change is done to the behavior of the original function. It acts as normal.
 
 But we want to change the behavior. Just as an example we want to have a messagebox shown when the TD application calls SalGetVersion and return the original value.
 
@@ -179,9 +180,9 @@ private static ushort SalGetVersionHook()
 When SalGetVersion is called it always returns 80.
 
 As can be seen, multiple implementations can be used to alter the original function.
-You might want to have all of them available and choose depending on your need between those implementations at runtime.
+You might want to have all of them available and choose depending on your needs between those implementations at runtime.
 
-This can be done using the principle of **variants**
+This can be done using the principle of **variants**.
 
 You can hook the same function and enable a particular variant at runtime and have all those alternative behaviors just by switching variant:
 
@@ -214,7 +215,7 @@ private static ushort SalGetVersionHook()
 
 See examples for the existing hooked functions in the project to change return values and parameters.
 
-The only thing to implement is the actual hooking of the function.
+The only thing left to implement is the actual hooking of the function.
 
 This is done by adding the creation of the hook in the **InstallHook** method within **NetHookTD_Client.cs**
 
@@ -228,9 +229,9 @@ case Hooks.SalGetVersion:
 ```
 
 You have to determine first in which dll the TD function resides.
-As example shows you set the function pointer and the hook delegate for the TD function.
+The example above shows you how to set the function pointer and the hook delegate for the TD function.
 
-At this point all is implemented and ready to be used in a TD application.
+At this point all is implemented and ready to be used.
 Build the project.
 
 ### Deployment:
@@ -244,7 +245,7 @@ For this to work you need to deploy the following dlls in the same folder as you
 
 
 ### Implement TD code for function hooking:
-The TD sample application provided already implements the Exported Function definitions to be used for hooking. Just copy/paste the complete section in your own project
+The TD sample application provided already implements the Exported Function definitions to be used for hooking. Just copy/paste the complete section in your own project.
 
 An excerpt from these definitions for just the InstallHook and RemoveHook:
 
@@ -291,10 +292,10 @@ Lastly the hook is removed and the function is called which returns 75 again.
     Set nRet = SalGetVersion(  )
     ! Result is 75 when using TD 7.5
 
-When using variant 1 above, as implemented in the example, will show a messagebox when the hooked function is called.
+When using variant 1 instead, as implemented in the example, will show a messagebox when the hooked function is called.
 
 ## Provided TD sample
-NetHookTD provides two TD  applications to be used to test NetHookTD and are located in the subfolder **TDSample**.
+NetHookTD provides two TD applications to be used to test NetHookTD and are located in the subfolder **TDSample**.
 
 - **TDSample_TD21.apt** : to be used for ANSI TD versions TD 2.1 up to TD 4.2
 - **TDSample_UNICODE.apt** : to be used for UNICODE TD versions TD 5.1 and up (32 bit only)
@@ -304,23 +305,23 @@ After you have build the NetHookTD solution you can use the following batch file
 
 - **CopyBuild.bat**
 
-(make sure the TD sample is not opened in TD IDE or is running, The dlls may be loaded and in  use)
+(make sure the TD sample is not opened in TD IDE or is running, The dlls may be loaded and in use)
 
 Open the sample in TD IDE and run.
 
-NetHookTD has implemented 4 example hooks and  each has 3 variants.
+NetHookTD has implemented 4 example hooks and each has 3 variants.
 Just press the corresponding buttons on the form to execute implemented tests.
 
-Enhance the sample when you implemented your own hooks accordingly.
+Enhance the sample when you added your own hooks accordingly.
 
 
 ## TD Community Forum
-Join the TD Community Forum for everything related to Gupta Team Developer for related questions, answers and info. Also for this NetHookTD project
+Join the TD Community Forum for everything related to Gupta Team Developer for questions, answers and info.
 
 https://forum.tdcommunity.net
 
 If you like this project and want to enhance/improve it please do so.
-Any help is appreciated. Changes to this project can be done by pull requests.
+Any help is appreciated. Changes to this project can be done by pull request.
 Like to be an official contributor, contact me to be added as contributor of this project.
 
 Find me as Dave Rabelink on the forum mentioned above.
