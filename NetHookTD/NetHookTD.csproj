@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCpu</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <DllExportIdent>3818BF0C-C452-4518-BDB5-74FD78561660</DllExportIdent>
@@ -52,7 +52,7 @@
     <DllExportPatches>0</DllExportPatches>
     <DllExportPreProcType>0</DllExportPreProcType>
     <DllExportPostProcType>0</DllExportPostProcType>
-	<PlatformTarget>x86</PlatformTarget>
+	<PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EasyHook, Version=2.7.7097.0, Culture=neutral, PublicKeyToken=4b580fca19d0b0c5, processorArchitecture=MSIL">
