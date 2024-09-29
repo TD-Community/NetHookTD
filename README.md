@@ -1,3 +1,5 @@
+![Language](https://img.shields.io/badge/Gupta_Team_Developer-SqlWindows_TD%202.0%20and%20up-red?style=plastic&labelColor=blue)
+
 # TD Runtime Hooking c# Framework
 
 ## What is Hooking?
