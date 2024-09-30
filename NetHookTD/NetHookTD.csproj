@@ -50,12 +50,11 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup>
-    <DllExportIdent>3818BF0C-C452-4518-BDB5-74FD78561660</DllExportIdent>
+    <DllExportIdent>924C09BA-AD72-45AC-BFC8-9AD434BC0919</DllExportIdent>
     <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
     <DllExportNamespace>NetHookTD</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
     <PlatformTarget>x86</PlatformTarget>
-    <DllExportPlatform>x86</DllExportPlatform>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
     <DllExportOurILAsm>false</DllExportOurILAsm>
